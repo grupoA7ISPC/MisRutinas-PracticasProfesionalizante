@@ -1,0 +1,13 @@
+*Pipfile
+*.lock
+*pycache
+*.env
+.vscode/
+db.sqlite3
+__pycache__*
+
+#Entorno virtuales:
+env/
+venv/
+MRVirtual/
+local.py
