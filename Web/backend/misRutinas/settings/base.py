@@ -37,12 +37,15 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
 THIRD_APPS = []
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'usuarios',
+    'clases'
+]
 
 INSTALLED_APPS = THIRD_APPS + DJANGO_APPS  + LOCAL_APPS
 
