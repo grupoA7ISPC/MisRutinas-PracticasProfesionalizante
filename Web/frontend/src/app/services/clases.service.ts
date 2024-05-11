@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Suscripcion } from '../models/suscripcion';
+import { Clase } from '../models/clase';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +10,21 @@ export class ClasesService {
 
   constructor(private http: HttpClient) { }
 
-  private urlApi: string = '';
+  private URL_API: string = './assets/data/clases.json'; // TEMPORAL, SOLO GETs
 
-  getAllSubscriptions(): Observable <any> {
-    return this.http.get<Suscripcion[]>(this.urlApi);
+  getAllClasses(): Observable <any> {
+    return this.http.get<Clase[]>(this.URL_API);
   }
 
-  getSubscription(id: number): Observable <any> {
-    return this.http.get<Suscripcion[]>(`${this.urlApi}/${id}`);
+  getClass(id: number): Observable <any> {
+    return this.http.get<Clase[]>(`${this.URL_API}/${id}`);
+  }
+
+  createClass(clase: Clase): Observable <any> {
+    return this.http.post<Clase>(this.URL_API, clase);
+  }
+
+  updateClass(clase: Clase): Observable <any> {
+    return this.http.put<Clase>(`${this.URL_API}/${clase.id_clase}`, clase);
   }
 }

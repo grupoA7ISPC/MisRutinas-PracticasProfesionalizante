@@ -1,0 +1,10 @@
+[
+  {
+    "id_clase": 1,
+    "nombre": "Spinning",
+    "descripcion": "Ciclismo indoor para quemar calorías y mejorar la resistencia cardiovascular. Intensidad: Media/Alta, todos los niveles. Fortalece el corazón, pulmones y huesos. Regula el colesterol y los triglicéridos, además de controlar la presión arterial. Aumenta la potencia y resistencia física.",
+    "image": "images/spinning.jpeg",
+    "duracion": "Lunes de 14:30hs a 15:30hs // Viernes de 18:30hs a 19:30hs",
+    "precio": 11000
+  }
+]
