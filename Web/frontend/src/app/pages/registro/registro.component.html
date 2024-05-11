@@ -55,7 +55,10 @@
             </div>
         </div>
         <div class="form-footer">
-            <label class="agree" for="checkbox"> <input type="checkbox" name="checkbox" id="checkbox" formControlName = "checkbox">Acepto <a href="#" class="terminos">Términos y Condiciones</a></label>
+            <div class="form-terms">
+              <input type="checkbox" name="checkbox" id="checkbox" formControlName= "checkbox">
+              <label class="agree" for="checkbox">Acepto <a href="#" class="terminos">Términos y Condiciones</a></label>
+            </div>
             <div *ngIf="Checkbox?.errors && Checkbox?.touched"> <p *ngIf="Checkbox?.hasError('required')" class="text-danger"  >Este campo es requerido.</p></div>
             <!-- <p id="check-error">Acepte los términos y condiciones</p> -->
             <button type="submit" class="button-register">Registrarme</button>

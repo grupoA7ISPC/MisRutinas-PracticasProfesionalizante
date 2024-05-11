@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&display=swap');
+@import 'src/styles.css';
 :root {
 	--fuenteT: 'Anton', sans-serif;
 	--fuenteP: 'Inter Tight', sans-serif;
@@ -11,18 +12,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* body {
-    background-color: #262632;
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image:linear-gradient( rgba(0,0,0,0.6),rgba(0,0,0,0.5), url('../../../assets/images/registro2.jpg'));
-    background-size: cover;
-} */
-
 h6.mis-rutinas{
     font-size: 1.5rem;
     font-family: 'Inter Tight', sans-serif;
@@ -30,7 +19,7 @@ h6.mis-rutinas{
   }
 
 .form-container {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,6 +38,7 @@ form {
     border-radius: 10px;
     box-shadow:0 5px 30px black;
     padding: 15px;
+    margin: 32px;
 }
 
 
@@ -190,25 +180,33 @@ form .return a:hover{
 
 }
 
+.terminos {
+  color: var(--naranja-intenso)
+}
+
 .terminos:hover {
-    color: #FF6600;
+    color: var(--naranja-soft);
+}
+
+.terminos:visited {
+  color: #3F51B5;
 }
 
 /********** Funcionalidad JS *********/
 
 .input-container.ok input{
-    border-bottom: 0.1px solid rgb(54, 242, 21);
+    border-bottom: 0.1px solid var(--success);
 }
 
 .input-container.falla input{
-    border-bottom :0.1px solid red;
+    border-bottom :0.1px solid var(--danger);
 
 }
 .input-container p{
     /* visibility: hidden; */
     padding:0;
     margin:0;
-    color: red;
+    color: var(--danger);
     font-weight: lighter;
     font-style: italic;
     font-size: 12px;
@@ -216,8 +214,18 @@ form .return a:hover{
 
 .input-container.falla p{
     /* visibility:visible; */
-    color: red;
+    color: var(--danger);
 
+}
+
+.text-danger {
+  color: var(--danger);
+}
+
+.form-terms {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 #check-error {
