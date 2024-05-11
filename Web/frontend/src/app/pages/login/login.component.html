@@ -7,20 +7,23 @@
         <span class="logo-misrutinas"></span>
       </div>
       <form class="login__form" [formGroup]= "form" (ngSubmit)="enviarFormulario($event)">
-        <p class="form-title">Inicia sesión</p>
+        <div class="form-title--container">
+          <p class="form-title">Inicia sesión</p>
+          <p class="form-subtitle">o <a href="#">Regístrate</a>.</p>
+        </div>
         <div class="form-group">
           <label for="email" class="label-email"><span></span>Correo electrónico:</label>
           <input type="email" formControlName="email" id="email" placeholder="misrutinas@ejemplo.com">
           <div *ngIf="Email?.errors && Email?.touched">
-            <p *ngIf="Email?.hasError('required')" class="text-danger">El email es requerido.</p>
-            <p *ngIf="Email?.hasError('email')" class="text-danger">El formato del email debe ser válido.</p>
+            <p *ngIf="Email?.hasError('required')" class="text-danger">Ingresa tu email.</p>
+            <p *ngIf="Email?.hasError('email')" class="text-danger">Ingresa un email válido.</p>
           </div>
         </div>
         <div class="form-group">
           <label for="password" class="label-password"><span></span>Contraseña:</label>
           <input type="password" formControlName="password" id="password" placeholder="*********">
           <div *ngIf="Password?.errors && Password?.touched">
-            <p *ngIf="Password?.hasError('required')" class="text-danger">La contraseña es requerida.</p>
+            <p *ngIf="Password?.hasError('required')" class="text-danger">Ingresa tu contraseña.</p>
           </div>
         </div>
         <div class="form-buttons">
