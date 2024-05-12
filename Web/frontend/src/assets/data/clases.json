@@ -6,5 +6,13 @@
     "image": "images/spinning.jpeg",
     "duracion": "Lunes de 14:30hs a 15:30hs // Viernes de 18:30hs a 19:30hs",
     "precio": 11000
+  },
+  {
+    "id_clase": 2,
+    "nombre": "Pilates",
+    "descripcion": "Clases íntegramente dedicadas al Método Pilates donde fusionaremos  prácticas tanto en suelo, como tambien con  elementos y equipo especializado. enfocadas en la flexibilidad, fuerza, equilibrio",
+    "image": "images/pilates.jpg",
+    "duracion": "Martes de 14:30hs a 15:30hs // Jueves de 18:30hs a 19:30hs",
+    "precio": 18000
   }
 ]
