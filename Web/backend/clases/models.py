@@ -1,22 +1,6 @@
 from django.db import models
 from usuarios.models import Usuario
 
-
-class Pago(models.Model):
-    id_pago = models.AutoField(primary_key=True)
-    fecha = models.DateTimeField(auto_now_add=True)
-    
-    class Meta:
-        db_table = "Pago"
-        verbose_name = "Pago de clase"
-        verbose_name_plural = "Pagos de clases"
-        
-    def __unicode__(self):
-        return self.id_pago 
-    
-    def __int__(self):
-        return self.id_pago
-    
 class Clase(models.Model):
     id_clase = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
@@ -39,7 +23,7 @@ class Clase(models.Model):
 class UsuarioClase(models.Model):
     id_user_clase = models.AutoField(primary_key=True)
     id_clase = models.ForeignKey(Clase,on_delete=models.CASCADE)
-    id_user = models.ForeignKey(Usuario, on_delete=models.CASCADE)  
+    id_user = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     
     class Meta:
         db_table = "UsuarioClase"
@@ -51,19 +35,18 @@ class UsuarioClase(models.Model):
     def __int__(self):
         return self.id_user_clase
     
-class Factura(models.Model):
-    id_factura = models.AutoField(primary_key=True)
+class Pago(models.Model):
+    id_pago = models.AutoField(primary_key=True)
     total = models.DecimalField(decimal_places=2, max_digits=8)
     fecha = models.DateTimeField(auto_now_add=True)
     id_user_clase= models.ForeignKey(UsuarioClase,on_delete=models.CASCADE)
-    id_pago = models.ForeignKey(Pago, on_delete=models.CASCADE)
     
     class Meta:
-        db_table = "Factura"
-        verbose_name = "Factura del pago de clase"
-        verbose_name_plural = "Facturas"
+        db_table = "Pago"
+        verbose_name = "Pago de clase"
+        verbose_name_plural = "Pagos"
         
     def __unicode__(self):
-        return self.id_factura
+        return self.id_pago
     def __int__(self):
-        return self.id_factura
+        return self.id_pago
