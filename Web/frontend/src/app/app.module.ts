@@ -12,6 +12,7 @@ import { CardProdComponent } from './components/card-prod/card-prod.component';
 import { QuienesSomosComponent } from './pages/quienes-somos/quienes-somos.component';
 import { CardIntegranteComponent } from './components/card-integrante/card-integrante.component';
 import { ContactoComponent } from './pages/contacto/contacto.component';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +22,8 @@ import { ContactoComponent } from './pages/contacto/contacto.component';
     CardProdComponent,
     QuienesSomosComponent,
     CardIntegranteComponent,
-    ContactoComponent
+    ContactoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
