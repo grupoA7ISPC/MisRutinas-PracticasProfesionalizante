@@ -3,7 +3,7 @@
     "id_clase": 1,
     "nombre": "Spinning",
     "descripcion": "Ciclismo indoor para quemar calorías y mejorar la resistencia cardiovascular. Intensidad: Media/Alta, todos los niveles. Fortalece el corazón, pulmones y huesos. Regula el colesterol y los triglicéridos, además de controlar la presión arterial. Aumenta la potencia y resistencia física.",
-    "image": "images/spinning.jpeg",
+    "imagen": "./assets/data/images/spinning.jpeg",
     "duracion": "Lunes de 14:30hs a 15:30hs // Viernes de 18:30hs a 19:30hs",
     "precio": 11000
   },
@@ -11,7 +11,7 @@
     "id_clase": 2,
     "nombre": "Pilates",
     "descripcion": "Clases íntegramente dedicadas al Método Pilates donde fusionaremos  prácticas tanto en suelo, como tambien con  elementos y equipo especializado. enfocadas en la flexibilidad, fuerza, equilibrio",
-    "image": "images/pilates.jpg",
+    "imagen": "./assets/data/images/pilates.jpg",
     "duracion": "Martes de 14:30hs a 15:30hs // Jueves de 18:30hs a 19:30hs",
     "precio": 18000
   }
