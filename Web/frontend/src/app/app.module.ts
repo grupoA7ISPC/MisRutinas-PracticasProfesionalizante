@@ -11,6 +11,7 @@ import { RegistroComponent } from './pages/registro/registro.component';
 import { CardProdComponent } from './components/card-prod/card-prod.component';
 import { QuienesSomosComponent } from './pages/quienes-somos/quienes-somos.component';
 import { CardIntegranteComponent } from './components/card-integrante/card-integrante.component';
+import { ContactoComponent } from './pages/contacto/contacto.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +20,8 @@ import { CardIntegranteComponent } from './components/card-integrante/card-integ
     RegistroComponent,
     CardProdComponent,
     QuienesSomosComponent,
-    CardIntegranteComponent
+    CardIntegranteComponent,
+    ContactoComponent
   ],
   imports: [
     BrowserModule,
