@@ -22,5 +22,13 @@
     "imagen": "./assets/data/images/funcional.jpg",
     "duracion": "Miercoles de 09:30hs a 10:30hs // Viernes de 16:00hs a 17:00hs",
     "precio": 15000
+  },
+  {
+    "id_clase": 4,
+    "nombre": "CrossFit",
+    "descripcion": "Es un sistema de acondicionamiento físico basado en ejercicios constantemente variados, con movimientos funcionales, ejecutados a alta intensidad",
+    "imagen": "./assets/data/images/crossfit.jpg",
+    "duracion": "Lunes de 19:30hs a 20:30hs // Jueves de 19:30hs a 20:30hs",
+    "precio": 16000
   }
 ]
