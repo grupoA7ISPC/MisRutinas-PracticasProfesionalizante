@@ -14,5 +14,13 @@
     "imagen": "./assets/data/images/pilates.jpg",
     "duracion": "Martes de 14:30hs a 15:30hs // Jueves de 18:30hs a 19:30hs",
     "precio": 18000
+  },
+  {
+    "id_clase": 3,
+    "nombre": "Funcional",
+    "descripcion": "Los ejercicios de entrenamiento funcional tienen como objetivo que los músculos trabajen juntos y no de forma aislada, y que se preparen para las tareas diarias, simulando los movimientos comunes que puedes hacer en tu casa, en el trabajo o en la práctica de cualquier deporte.",
+    "imagen": "./assets/data/images/funcional.jpg",
+    "duracion": "Miercoles de 09:30hs a 10:30hs // Viernes de 16:00hs a 17:00hs",
+    "precio": 15000
   }
 ]
