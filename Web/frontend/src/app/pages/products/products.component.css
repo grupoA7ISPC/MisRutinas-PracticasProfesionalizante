@@ -3,6 +3,7 @@
 .container {
     display: grid;
     min-height: 100vh;
+    min-width: 100vw;
     grid-template-columns: repeat(auto-fit, 320px);
     justify-content: center;
     grid-gap: 40px 32px;
