@@ -25,6 +25,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.compon
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import { ClaseComponent } from './pages/dashboard/clase/clase.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ContactoComponent,
     HomeComponent,
     NavComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClaseComponent
   ],
   imports: [
     BrowserModule,
