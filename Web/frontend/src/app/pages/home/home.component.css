@@ -48,10 +48,11 @@
   .fondogra{
     background-color: rgb(0 0 0 / 70%);
   }
-  
-  
-  
-  
+    
+  .home-container{
+    background: var(--naranja-soft);
+    /*min-width: 100vw;*/
+  }
   .icon {
     width: 3vw;
     height: 3vw;
@@ -146,6 +147,13 @@
   }
   .bi:hover{
     color: #ff6600;
+  }
+  .home-content{
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    align-items: center;
+    background-color: #262632;
   }
   
   @media only screen and (max-width: 767px){

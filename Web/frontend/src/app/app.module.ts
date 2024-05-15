@@ -26,6 +26,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { ClaseComponent } from './pages/dashboard/clase/clase.component';
+import { NavbarComponent } from './layout/navbar/navbar.component';
+import { FooterComponent } from './layout/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +41,9 @@ import { ClaseComponent } from './pages/dashboard/clase/clase.component';
     HomeComponent,
     NavComponent,
     DashboardComponent,
-    ClaseComponent
+    ClaseComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
