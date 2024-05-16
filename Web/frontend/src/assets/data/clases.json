@@ -30,5 +30,13 @@
     "imagen": "./assets/data/images/crossfit.jpg",
     "duracion": "Lunes de 19:30hs a 20:30hs // Jueves de 19:30hs a 20:30hs",
     "precio": 16000
+  },
+  {
+    "id_clase": 5,
+    "nombre": "Powerlifting",
+    "descripcion": "Conocido como levantamiento de potencia es una de las modalidades del deporte de fuerza que consiste en levantar el mayor peso posible mediante tres movimientos básicos en cada uno de ellos, el powerlifter trabajará con un grupo muscular diferente.",
+    "imagen": "./assets/data/images/powerlifting.jpg",
+    "duracion": "Miercoles de 08:30hs a 09:30hs // Viernes de 15:00hs a 16:00hs",
+    "precio": 12000
   }
 ]
