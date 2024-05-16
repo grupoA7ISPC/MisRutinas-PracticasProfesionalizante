@@ -1,0 +1,33 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="form-group">
+    <label for="name">Nombre de la clase:</label>
+    <input type="text" class="form-control" id="name" placeholder="Clase de Spinning" formControlName="name">
+    <!-- <div ngIf="">
+      <p *ngIf="Nombre?.hasError('required')" class="text-danger">Este campo es requerido.</p>
+      <p *ngIf="Nombre?.hasError('minlength') || Nombre?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
+    </div> -->
+  </div>
+  <div class="form-group">
+    <label for="price">Precio:</label>
+    <input type="number" class="form-control" id="price" placeholder="2500" formControlName="price">
+  </div>
+  <div class="form-group">
+    <label for="description">Descripción:</label>
+    <input type="text" class="form-control" id="description" placeholder="Descripción de la clase de spinning." formControlName="description">
+  </div>
+  <div class="form-group">
+    <label for="image">Imagen:</label>
+    <input type="file" id="image" accept="image/*" formControlName="image">
+    <div>
+      <!-- <img src="" alt=""> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="duration">Duración:</label>
+    <input type="text" class="form-control" id="duration" placeholder="Lunes y miércoles 18:30hs." formControlName="duration">
+  </div>
+  <div class="btn-container">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <button type="button" class="btn btn-secondary">Cancelar</button>
+  </div>
+</form>

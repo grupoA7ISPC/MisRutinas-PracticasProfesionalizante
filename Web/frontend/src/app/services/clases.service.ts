@@ -27,4 +27,8 @@ export class ClasesService {
   updateClass(clase: Clase): Observable <any> {
     return this.http.put<Clase>(`${this.URL_API}/${clase.id_clase}`, clase);
   }
+
+  deleteClass(id: number): Observable <any> {
+    return this.http.delete<Clase>(`${this.URL_API}/${id}`);
+  }
 }
