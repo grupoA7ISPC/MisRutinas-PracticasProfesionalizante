@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password
 
 class Rol(models.Model):
     id_rol  = models.AutoField(primary_key=True)
@@ -38,3 +39,16 @@ class Usuario(models.Model):
     # NOMBRE + APELLIDO
     def __str__(self):
         return self.nombre + " " + self.apellido
+    
+    def set_password(self, raw_password):
+      self.password = make_password(raw_password)
+    @staticmethod
+    def check_credentials(raw_email, raw_password):
+        try:
+            usuario = Usuario.objects.get(email=raw_email, password=raw_password)
+        except Usuario.DoesNotExist:
+            # Si no se encuentra el usuario en la base de datos, devuelve False
+            return None
+        
+        # Si el usuario existe y las credenciales coinciden, devuelve True
+        return usuario
