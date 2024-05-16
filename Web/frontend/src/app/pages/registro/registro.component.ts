@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Usuario, UsuarioDTO } from 'src/app/services/auth/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -11,21 +10,20 @@ import { Usuario, UsuarioDTO } from 'src/app/services/auth/usuario.service';
 
 export class RegistroComponent {
   public registerForm;
-  usuario: Usuario = new Usuario();
 
   constructor(private formBuilder: FormBuilder,  private router: Router) {
     this.registerForm = this.formBuilder.group({
-      nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-      apellido : ['', [Validators.required, Validators.minLength(2), Validators.maxLength(15)]],
-      usuario : ['',[Validators.required]],
+      nombre: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      apellido : ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       email : ['',[Validators.required, Validators.email]],
-      password1: ['', Validators.required],
+      password1: ['', [Validators.required,Validators.minLength(8), Validators.maxLength(16)]],
       password2: ['', Validators.required],
       fecha: ['', [Validators.required, this.fechaValidator]],
+      dni: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+      telefono: ['', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]],
       checkbox : ['',[Validators.required, Validators.requiredTrue]]
     }, { validator: this.passwordMatchValidator('password1', 'password2')});
   }
-
 
   passwordMatchValidator(password1Key: string, password2Key: string): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -63,35 +61,7 @@ export class RegistroComponent {
     event.preventDefault();
     if (this.registerForm.valid) {
       console.log("Enviando al servidor...");
-      const usuarioDTO: UsuarioDTO = {
-        nombre: this.registerForm.value.nombre,
-        apellido: this.registerForm.value.apellido,
-        username: this.registerForm.value.usuario,
-        email: this.registerForm.value.email,
-        password: this.registerForm.value.password1,
-        fec_nac: this.registerForm.value.fecha
-      };
-      console.log("usuarioDTO => ", usuarioDTO);
-      // this.UsuarioService.onCrearUsuario(usuarioDTO).subscribe(
-      //   data => {
-      //     console.log(data);
-      //     Swal.fire({
-      //       title: '¡REGISTRO EXITOSO!',
-      //       text: `Se ha creado tu usuario`,
-      //       width: '800',
-      //       padding: '3em',
-      //       icon: 'success',
-      //       confirmButtonText: 'Aceptar',
-      //       backdrop: `rgba(255, 102, 0, 0.4) left top no-repeat`,
-      //       confirmButtonColor:'#262632'
-      //     }).then(() => {
-      //       this.router.navigate(['/login']);
-      //     });
-      //   },
-      //   error => {
-      //     console.error(error);
-      //   }
-      // );
+      // Lógica para enviar los datos al servidor
     } else {
       this.registerForm.markAllAsTouched();
     }
@@ -104,10 +74,6 @@ export class RegistroComponent {
 
   get Apellido() {
     return this.registerForm.get('apellido');
-  }
-
-  get Usuario() {
-    return this.registerForm.get('usuario');
   }
 
   get Email() {
@@ -124,6 +90,14 @@ export class RegistroComponent {
 
   get Fecha() {
     return this.registerForm.get('fecha');
+  }
+
+  get Dni() {
+    return this.registerForm.get('dni');
+  }
+
+  get Telefono() {
+    return this.registerForm.get('telefono');
   }
 
   get Checkbox() {
