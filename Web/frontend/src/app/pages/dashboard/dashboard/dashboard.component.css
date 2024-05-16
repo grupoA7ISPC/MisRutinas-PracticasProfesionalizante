@@ -1,21 +1,42 @@
-.grid-container {
+.table-container {
   margin: 20px;
+  position: relative;
 }
 
-.dashboard-card {
+.header {
   position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-}
-
-.more-button {
-  position: absolute;
-  top: 5px;
+  top: 10px;
+  left: 10px;
   right: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.dashboard-card-content {
+.create-button {
+  background-color: #007bff;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  margin-top: 50px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 8px;
   text-align: center;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
 }
