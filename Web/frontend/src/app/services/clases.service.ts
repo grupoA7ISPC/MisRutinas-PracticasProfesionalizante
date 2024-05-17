@@ -10,7 +10,7 @@ export class ClasesService {
 
   constructor(private http: HttpClient) { }
 
-  private URL_API: string = './assets/data/clases.json'; // TEMPORAL, SOLO GETs
+  private URL_API: string = 'http://127.0.0.1:8000/api/v1/clases/'; // TEMPORAL, SOLO GETs
 
   getAllClasses(): Observable <any> {
     return this.http.get<Clase[]>(this.URL_API);
