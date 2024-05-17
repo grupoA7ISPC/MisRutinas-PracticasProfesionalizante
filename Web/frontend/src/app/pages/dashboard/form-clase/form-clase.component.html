@@ -2,18 +2,26 @@
   <div class="form-group">
     <label for="name">Nombre de la clase:</label>
     <input type="text" class="form-control" id="name" placeholder="Clase de Spinning" formControlName="name">
-    <!-- <div ngIf="">
-      <p *ngIf="Nombre?.hasError('required')" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="Nombre?.hasError('minlength') || Nombre?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
-    </div> -->
+    <div *ngIf="name?.errors && name?.touched">
+      <p *ngIf="name?.hasError('required')" class="text-danger">Este campo es requerido.</p>
+      <p *ngIf="name?.hasError('minlength') || name?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="price">Precio:</label>
     <input type="number" class="form-control" id="price" placeholder="2500" formControlName="price">
+    <div *ngIf="price?.errors && price?.touched">
+      <p *ngIf="price?.hasError('required')" class="text-danger">Este campo es requerido.</p>
+      <p *ngIf="price?.hasError('min') || price?.hasError('max')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="description">Descripción:</label>
     <input type="text" class="form-control" id="description" placeholder="Descripción de la clase de spinning." formControlName="description">
+    <div *ngIf="description?.errors && description?.touched">
+      <p *ngIf="description?.hasError('required')" class="text-danger">Este campo es requerido.</p>
+      <p *ngIf="name?.hasError('minlength') || name?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
+    </div>
   </div>
   <div class="form-group">
     <label for="image">Imagen:</label>
