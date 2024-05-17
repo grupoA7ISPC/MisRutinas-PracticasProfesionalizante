@@ -15,53 +15,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Dato 2</td>
-          <td>Dato 3</td>
-          <td>Dato 4</td>
-          <td>Dato 5</td>
-          <td>Dato 6</td>
-          <td>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Dato 2</td>
-          <td>Dato 3</td>
-          <td>Dato 4</td>
-          <td>Dato 5</td>
-          <td>Dato 6</td>
-          <td>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Dato 2</td>
-          <td>Dato 3</td>
-          <td>Dato 4</td>
-          <td>Dato 5</td>
-          <td>Dato 6</td>
-          <td>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Dato 2</td>
-          <td>Dato 3</td>
-          <td>Dato 4</td>
-          <td>Dato 5</td>
-          <td>Dato 6</td>
-          <td>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
-          </td>
+        <tr *ngFor="let clase of clases">
+          <app-tab-clase [clase]="clase"></app-tab-clase>
         </tr>
       </tbody>
     </table>
