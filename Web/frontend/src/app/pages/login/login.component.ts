@@ -3,7 +3,7 @@ import { FormControl, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UsuarioDTO, UsuarioLoginDTO } from 'src/app/services/auth/usuario.service';
+import { UsuarioDTO, UsuarioLoginDTO } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-login',
@@ -55,7 +55,6 @@ export class LoginComponent {
           } else {
             this.error = "Se ha producido un error inesperado. Por favor, inténtelo de nuevo más tarde.";
           }
-          console.log("ERROR: " + JSON.stringify(error));
         }
       });
     } else {
