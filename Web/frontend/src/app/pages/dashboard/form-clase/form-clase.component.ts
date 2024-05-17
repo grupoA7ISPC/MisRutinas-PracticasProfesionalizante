@@ -15,7 +15,7 @@ export class FormClaseComponent {
       price:  [0, [Validators.required, Validators.max(10), Validators.min(0)]],
       description:  ['', [Validators.required, Validators.maxLength(400), Validators.minLength(1)]],
       image:  ['', [Validators.required]],
-      duration:  ['', [Validators.required, Validators.maxLength(150), Validators.minLength(1)]]
+      duration:  ['', [Validators.required, Validators.maxLength(100), Validators.minLength(1)]]
     });
   }
 
@@ -34,5 +34,9 @@ export class FormClaseComponent {
 
   get description(){
     return this.form.get('description');
+  }
+
+  get duration(){
+    return this.form.get('duration');
   }
 }
