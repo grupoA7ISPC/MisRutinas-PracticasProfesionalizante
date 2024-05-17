@@ -29,6 +29,7 @@ import { ClaseComponent } from './pages/dashboard/clase/clase.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FormClaseComponent } from './pages/dashboard/form-clase/form-clase.component';
+import { TabClaseComponent } from './pages/dashboard/tab-clase/tab-clase.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { FormClaseComponent } from './pages/dashboard/form-clase/form-clase.comp
     ClaseComponent,
     NavbarComponent,
     FooterComponent,
-    FormClaseComponent
+    FormClaseComponent,
+    TabClaseComponent
   ],
   imports: [
     BrowserModule,
