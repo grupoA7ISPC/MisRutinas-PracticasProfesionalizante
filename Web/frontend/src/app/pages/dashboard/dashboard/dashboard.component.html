@@ -16,7 +16,23 @@
       </thead>
       <tbody>
         <tr *ngFor="let clase of clases">
-          <app-tab-clase [clase]="clase"></app-tab-clase>
+          <td>{{ clase.id_clase }}</td>
+          <td>{{ clase.nombre }}</td>
+          <td>{{ clase.precio }}</td>
+          <td>{{ clase.descripcion }}</td>
+          <td>
+            <img
+              [src]="clase.imagen"
+              alt="{{ clase.nombre }}"
+              width="100"
+              height="100"
+            />
+          </td>
+          <td>{{ clase.duracion }}</td>
+          <td>
+            <button type="button" class="btn btn-primary">Editar</button>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>

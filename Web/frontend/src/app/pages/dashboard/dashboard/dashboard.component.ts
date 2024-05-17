@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Clase } from 'src/app/models/clase';
 import { ClasesService } from 'src/app/services/clases.service';
 
@@ -7,16 +7,14 @@ import { ClasesService } from 'src/app/services/clases.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent {
-  constructor (private clasesService: ClasesService) { }
-  clases: Clase[] = []
+export class DashboardComponent implements OnInit {
+  clases: Clase[] = [];
+
+  constructor(private clasesService: ClasesService) {}
 
   ngOnInit() {
     this.clasesService.getAllClasses().subscribe(data => {
-    this.clases = data
-    console.log(this.clases); //Cambiar para renderizado luego.
-  });
+      this.clases = data;
+    });
+  }
 }
-}
-
-
