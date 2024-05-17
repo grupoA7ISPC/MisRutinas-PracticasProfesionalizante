@@ -1,6 +1,6 @@
 # MisRutinas 🧡🖤 
 
-<p style="text-align: center; font-weight: bold">Proyecto Integrador | Ciclo Lectivo 2023 Cohorte 2022.</p>
+<p style="text-align: center; font-weight: bold">Practica profesionalizante | Ciclo Lectivo 2024 Cohorte 2022.</p>
 
 <p style="text-align: center; font-weight: bold">Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del Instituto Superior Politécnico de Córdoba</p>
 
