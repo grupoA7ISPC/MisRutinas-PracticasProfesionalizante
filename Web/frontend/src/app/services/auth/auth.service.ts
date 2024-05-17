@@ -20,15 +20,6 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  // login(usuario: Usuario): Observable<any> {
-  //   return this.http.post<any>(this.url, usuario).pipe(map(data => {
-  //   localStorage.setItem('currentUser', JSON.stringify(data));
-
-  //   this.currentUserSubject.next(data);
-  //   this.loggedIn.next(true);
-  //   return data;
-  //   }));
-  // }
 
   login(usuario: UsuarioLoginDTO): Observable<any> {
     return this.http.post<any>(this.url, usuario).pipe(
@@ -39,11 +30,9 @@ export class AuthService {
         this.loggedIn.next(true);
 
         const idUsuario = data.id;
-        const rutinas = data.rutinas;
-
+        
         console.log("id user => ", idUsuario);
-        console.log("rutinas => ", rutinas);
-
+        
         return data;
       })
     );

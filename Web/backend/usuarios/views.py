@@ -16,7 +16,6 @@ def login_view(request):
             
             user_data = {
                 'id' : user.id_user,
-                'id_rol' : user.id_rol,
                 'nombre' : user.nombre,
                 'apellido' : user.apellido,
                 'email': user.email,
