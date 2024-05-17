@@ -17,15 +17,19 @@ export class AuthService {
 
   constructor(private http:HttpClient) {
     const storedUser = localStorage.getItem('currentUser');
-    this.currentUserSubject = new BehaviorSubject<Usuario | null>(storedUser ? new Usuario(JSON.parse(storedUser).user) : null);
+    this.currentUserSubject = new BehaviorSubject<Usuario | null>(
+      storedUser && typeof storedUser === 'string' ? new Usuario(JSON.parse(storedUser)) : null
+    );
     this.currentUser = this.currentUserSubject.asObservable();
     this.loggedIn = new BehaviorSubject<boolean>(!!storedUser);
-  }
+    if (!storedUser) {
+        this.currentUserSubject.next(null);
+    }
+}
 
   login(usuario: UsuarioLoginDTO): Observable<any> {
     return this.http.post<any>(this.URL_API, usuario).pipe(
       map(data => {
-        console.log("data desde authService.login: ", data)
         const user = new Usuario(data.user);
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
@@ -41,7 +45,7 @@ export class AuthService {
     this.loggedIn.next(false);
   }
 
-  get usuarioAutenticado(): any {
+  get usuarioAutenticado(): Usuario | null {
     return this.currentUserSubject.value;
   }
 

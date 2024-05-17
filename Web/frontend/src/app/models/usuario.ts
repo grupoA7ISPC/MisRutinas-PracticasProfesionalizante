@@ -9,14 +9,14 @@ export class Usuario {
   tel: string;
 
   constructor(data: any) {
-    this.id = data.id;
-    this.id_rol = data.id_rol;
-    this.nombre = data.nombre;
-    this.apellido = data.apellido;
-    this.email = data.email;
-    this.fec_nac = data.fec_nac;
-    this.dni = data.dni;
-    this.tel = data.tel;
+    this.id = data.id || 0; 
+    this.id_rol = data.id_rol || 0;
+    this.nombre = data.nombre || '';
+    this.apellido = data.apellido || '';
+    this.email = data.email || '';
+    this.fec_nac = data.fec_nac || '';
+    this.dni = data.dni || 0;
+    this.tel = data.tel || '';
   }
 }
 

@@ -38,16 +38,17 @@ export class LoginComponent {
     event.preventDefault();
 
     if (this.form.valid) {
-      console.log("this.form.value => ", this.form.value);
       let user: UsuarioLoginDTO = {
         email: this.form.value.email,
         password: this.form.value.password
       };
-      console.log("user => ", user);
       this.authService.login(user).subscribe({
         next: (data) => {
-          console.log("DATA: " + JSON.stringify(data));
-          this.router.navigate(['/dashboard']);
+          // console.log("DATA: " + JSON.stringify(data));
+          const currentUser = this.authService.usuarioAutenticado;
+          if (currentUser) {
+            this.router.navigate(['/dashboard']);
+          }
         },
         error: (error) => {
           if (error.status === 400 && error.error && error.error.error === "Credenciales inválidas") {
