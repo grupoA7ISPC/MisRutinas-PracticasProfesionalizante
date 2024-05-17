@@ -1,24 +1,40 @@
-<div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+<div class="table-container">
+  <h1>Bienvenido {{ username }}</h1>
+  <button class="create-button"><a class="nav-link" routerLink="/crear-clase">Crear Clase</a></button>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Descripcion</th>
+          <th>Img</th>
+          <th>Duracion</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let clase of clases">
+          <td>{{ clase.id_clase }}</td>
+          <td>{{ clase.nombre }}</td>
+          <td>{{ clase.precio }}</td>
+          <td>{{ clase.descripcion }}</td>
+          <td>
+            <img
+              [src]="clase.imagen"
+              alt="{{ clase.nombre }}"
+              width="100"
+              height="100"
+            />
+          </td>
+          <td>{{ clase.duracion }}</td>
+          <td>
+            <button type="button" class="btn btn-primary">Editar</button>
+            <button type="button" class="btn btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

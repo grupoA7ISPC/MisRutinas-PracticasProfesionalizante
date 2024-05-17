@@ -2,37 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse} from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-// import { DatePipe } from '@angular/common';
+import { UsuarioDTO } from 'src/app/models/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class Usuario {
-  id:number=0;
-  nombre : string="";
-  apellido : string="";
-  usuario : string="";
-  email : string="";
-  password1: string="";
-  password2: string="";
-  fecha : string="";
-  checkbox : string="";
-}
-
-export class UsuarioDTO {
-  nombre: string = "";
-  apellido: string = "";
-  username: string = "";
-  email: string = "";
-  password: string = "";
-  fec_nac: string = "";
-}
-
-export class UsuarioLoginDTO{
-  email: string | null | undefined = "";
-  password: string | null | undefined = "";
-}
 
 export class UsuarioService {
   url: string = "http://127.0.0.1:8000/api/v1/registro/"; // Añadir / si se necesita*

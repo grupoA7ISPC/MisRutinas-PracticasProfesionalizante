@@ -2,59 +2,50 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { Usuario, UsuarioLoginDTO } from './usuario.service';
+import { Usuario, UsuarioLoginDTO } from 'src/app/models/usuario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  url ="http://127.0.0.1:8000/api/v1/login/";
+  private URL_API: string = "http://127.0.0.1:8000/api/v1/login/";
 
-  currentUserSubject: BehaviorSubject<Usuario>;
-  currentUser: Observable<Usuario>;
-  public loggedIn:any;
+  private currentUserSubject: BehaviorSubject<Usuario | null>;
+  public currentUser: Observable<Usuario | null>;
+  public loggedIn: BehaviorSubject<boolean>;
+
   constructor(private http:HttpClient) {
-    console.log("Servicio de autenticación está corriendo");
-    this.currentUserSubject = new BehaviorSubject<Usuario>(JSON.parse(localStorage.getItem('currentUser') || '{}'));
+    const storedUser = localStorage.getItem('currentUser');
+    this.currentUserSubject = new BehaviorSubject<Usuario | null>(
+      storedUser && typeof storedUser === 'string' ? new Usuario(JSON.parse(storedUser)) : null
+    );
     this.currentUser = this.currentUserSubject.asObservable();
-  }
-
-  // login(usuario: Usuario): Observable<any> {
-  //   return this.http.post<any>(this.url, usuario).pipe(map(data => {
-  //   localStorage.setItem('currentUser', JSON.stringify(data));
-
-  //   this.currentUserSubject.next(data);
-  //   this.loggedIn.next(true);
-  //   return data;
-  //   }));
-  // }
+    this.loggedIn = new BehaviorSubject<boolean>(!!storedUser);
+    if (!storedUser) {
+        this.currentUserSubject.next(null);
+    }
+}
 
   login(usuario: UsuarioLoginDTO): Observable<any> {
-    return this.http.post<any>(this.url, usuario).pipe(
+    return this.http.post<any>(this.URL_API, usuario).pipe(
       map(data => {
-        console.log(data)
-        localStorage.setItem('currentUser', JSON.stringify(data));
-        this.currentUserSubject.next(data);
+        const user = new Usuario(data.user);
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
         this.loggedIn.next(true);
-
-        const idUsuario = data.id;
-        const rutinas = data.rutinas;
-
-        console.log("id user => ", idUsuario);
-        console.log("rutinas => ", rutinas);
-
-        return data;
+        return user;
       })
     );
   }
 
   logout(): void{
     localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
     this.loggedIn.next(false);
   }
 
-  get usuarioAutenticado(): Usuario {
+  get usuarioAutenticado(): Usuario | null {
     return this.currentUserSubject.value;
   }
 

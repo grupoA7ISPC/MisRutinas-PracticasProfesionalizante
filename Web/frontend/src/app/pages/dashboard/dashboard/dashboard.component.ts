@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit } from '@angular/core';
+import { Clase } from 'src/app/models/clase';
+import { ClasesService } from 'src/app/services/clases.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,26 +10,19 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 }
-        ];
-      }
+  clases: Clase[] = [];
+  usuario: Usuario | null = null;
+  username: string = "";
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 }
-      ];
-    })
-  );
+  constructor(private clasesService: ClasesService, private authService: AuthService) {}
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  ngOnInit() {
+    this.usuario = this.authService.usuarioAutenticado;
+    if (this.usuario) {
+      this.username = `${this.usuario.nombre} ${this.usuario.apellido}`;
+    }
+    this.clasesService.getAllClasses().subscribe(data => {
+      this.clases = data;
+    });
+  }
 }

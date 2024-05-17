@@ -11,15 +11,6 @@ export class CardIntegranteComponent {
 
   listaIntegrantes: Integrante[] = [
     {
-      id: 1,
-      nombre:'Facundo Peralta',
-      rol: 'Desarrollador',
-      foto: 'facu.jpg',
-      github: 'facuezeperalta',
-      linkedin: 'https://www.linkedin.com/in/facu-peralta/',
-      info: ''
-    },
-    {
       id: 2,
       nombre:'Carina Payleman',
       rol: 'Desarrolladora',
@@ -52,15 +43,6 @@ export class CardIntegranteComponent {
       rol: 'Desarrollador',
       foto: 'fede.jpg',
       github: 'fede9087',
-      linkedin: '',
-      info: ''
-    },
-    {
-      id: 6,
-      nombre:'Guillermo Arias',
-      rol: 'Desarrollador',
-      foto: 'guille.jpg',
-      github: 'misterio07',
       linkedin: '',
       info: ''
     },

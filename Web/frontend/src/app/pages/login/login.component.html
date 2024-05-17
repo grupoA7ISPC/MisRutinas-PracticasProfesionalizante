@@ -26,6 +26,7 @@
             <p *ngIf="Password?.hasError('required')" class="text-danger">Ingresa tu contraseña.</p>
           </div>
         </div>
+        <p *ngIf="error" class="text-danger">{{ error }}</p>
         <div class="form-buttons">
           <a href="#" class="btn-olvido">¿Olvidaste tu contraseña?</a>
           <input type="submit" value="Ingresar" class="btn-ingresar">
