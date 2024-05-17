@@ -25,10 +25,6 @@ export class LoginComponent {
     }
   )}
 
-  ngOnInit(): void{
-
-  }
-
   get Email()
   {
     return this.form.get("email");
@@ -51,10 +47,15 @@ export class LoginComponent {
       this.authService.login(user).subscribe({
         next: (data) => {
           console.log("DATA: " + JSON.stringify(data));
-          // this.router.navigate(['/dashboard']);
+          this.router.navigate(['/dashboard']);
         },
         error: (error) => {
-          this.error = error;
+          if (error.status === 400 && error.error && error.error.error === "Credenciales inválidas") {
+            this.error = "Usuario y/o contraseña incorrecta.";
+          } else {
+            this.error = "Se ha producido un error inesperado. Por favor, inténtelo de nuevo más tarde.";
+          }
+          console.log("ERROR: " + JSON.stringify(error));
         }
       });
     } else {

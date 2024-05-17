@@ -2,8 +2,6 @@ from django.shortcuts import render
 import json
 from .models import Usuario
 from django.http import JsonResponse
-from django.core.serializers import serialize
-from .serializers import LoginSerializer
 
 def login_view(request):
     if request.method == 'POST':
@@ -11,11 +9,13 @@ def login_view(request):
         email = usuario.get('email')
         password = usuario.get('password')
         user = Usuario.check_credentials(email, password)
+        
         print("User: ", user)
-        if user is not None:       
-            
+        if user is not None:
+            id_rol = user.id_rol.id_rol                               
             user_data = {
                 'id' : user.id_user,
+                'id_rol': id_rol,
                 'nombre' : user.nombre,
                 'apellido' : user.apellido,
                 'email': user.email,

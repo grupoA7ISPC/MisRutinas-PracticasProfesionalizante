@@ -8,24 +8,13 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class Usuario {
-  id:number=0;
-  nombre : string="";
-  apellido : string="";
-  usuario : string="";
-  email : string="";
-  password1: string="";
-  password2: string="";
-  fecha : string="";
-  checkbox : string="";
-}
-
 export class UsuarioDTO {
   nombre: string = "";
   apellido: string = "";
-  username: string = "";
   email: string = "";
   password: string = "";
+  tel: string = "";
+  dni: string = "";
   fec_nac: string = "";
 }
 
