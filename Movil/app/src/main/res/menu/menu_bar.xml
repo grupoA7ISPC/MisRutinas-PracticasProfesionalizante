@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home"/>
+    <item
+        android:id="@+id/finanza"
+        android:icon="@drawable/baseline_query_stats_24"
+        android:title="Finanza"/>
+    <item
+        android:id="@+id/calendario"
+        android:icon="@drawable/baseline_calendar_month_24"
+        android:title="Calendario"/>
+    <item
+        android:id="@+id/contacto"
+        android:icon="@drawable/baseline_person_2_24"
+        android:title="Contacto"/>
+
+</menu>

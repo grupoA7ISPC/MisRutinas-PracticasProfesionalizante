@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".ContactoActivity">
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="78dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/h1Contactanos"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/btnIngresar"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="459dp"
+        android:background="@drawable/button_primary"
+        android:text="@string/btnEnviar"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Nombre -->
+
+    <EditText
+        android:id="@+id/editTextNombre"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:clipToOutline="true"
+        android:ems="10"
+        android:hint="@string/inputNombre"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="198dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="@string/inputCorreo"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="271dp"/>
+
+    <EditText
+        android:id="@+id/editTextMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="339dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/input_generico"
+        android:clipToOutline="true"
+        android:ems="10"
+        android:hint="@string/inputTextArea"
+        android:textAlignment="center"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="137dp"
+        android:text="@string/h2Contacto"
+        />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="530dp"
+        android:background="?android:attr/listDivider"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="38dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="560dp"
+        app:srcCompat="@drawable/icon_instagram"
+        android:layout_marginLeft="70dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="38dp"
+        android:layout_height="58dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="560dp"
+        app:srcCompat="@drawable/icon_github" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="38dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginLeft="230dp"
+        app:srcCompat="@drawable/icon_whatsapp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="38dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginLeft="310dp"
+        app:srcCompat="@drawable/phone" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/color_fondo_menubar"
+        app:itemIconTint="@drawable/color_icono_menubar"
+        app:itemTextColor="@drawable/color_icono_menubar"
+        app:menu="@menu/menu_bar" />
+
+</RelativeLayout>

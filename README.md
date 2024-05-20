@@ -1,16 +1,12 @@
 # MisRutinas 🧡🖤
 
-<p style="text-align: center; font-weight: bold">Practica Profesionalizante | Ciclo Lectivo 2024 Cohorte 2022.</p>
+<p style="text-align: center; font-weight: bold">Práctica Profesionalizante | Ciclo Lectivo 2024 Cohorte 2022.</p>
 
-<p style="text-align: center; font-weight: bold">Proyecto Integrador (Página Web) | Ciclo Lectivo 2023 Cohorte 2022 and Proyecto Integrador (Aplicaciones Móviles) | Ciclo Lectivo 2023, Cohorte 2022.</p>
+<p style="text-align: center; font-weight: bold">Proyecto Integrador (Página Web) | Ciclo Lectivo 2023 && Proyecto Integrador (Aplicaciones Móviles) | Ciclo Lectivo 2023.</p>
 
 <p style="text-align: center; font-weight: bold">Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del Instituto Superior Politécnico de Córdoba</p>
 
-<img src="documents/logo-banner.png" alt="Logo MisRutinas" style="display: block; margin-left: auto; margin-right: auto;">
-
-Bienvenidos ♥ **MisRutinas** es una página web fitness para administrar rutinas de entrenamiento, permitiendo un control detallado de los ejercicios cargados por el propio usuario y complementándolo con funcionalidades como calendario, calculadora de IMC, sistema de logros (con membresía), entre otros.
-
-⚠ **Dentro de las carpetas "backend" y "frontend" se encuentran disponibles READMEs más detallados con instrucciones para la instalación de dependencias de las tecnologías utilizadas y la configuración de su entorno. Estos README te guiarán en el proceso paso a paso para asegurarte de tener todo lo necesario para ejecutar correctamente tanto el backend como el frontend del proyecto.**
+Bienvenidos ♥ **MisRutinas** es un Sistema de información web y mobile orientado a llevar de manera más eficiente la administración de los socios del gimnasio, entrenadores y diferentes opciones de planes ofrecidos por el gimnasio.
 
 ### Developers 2022-2023-2024 🤍
 
@@ -22,12 +18,13 @@ Bienvenidos ♥ **MisRutinas** es una página web fitness para administrar rutin
 
 ### Integrantes previos* 🤍
 
+* [Facundo Peralta](https://github.com/facuezeperalta)
+* [Leonel Rasjido](https://github.com/leonelrasjido18)
 * [Guillermo Arias](https://github.com/misterio07)
 * [Florencia Rodriguez](https://github.com/FlorenciaRoux)
 * [Silvina Eva Soria del Valle](https://github.com/Silvina-Dew)
-* [Facundo Peralta](https://github.com/facuezeperalta)
 
-*2022 y otros Sprints 2023.
+*2022 y otros Sprints 2023/2024.
 
 ### **STACK 2023 - eCommerce**
 
@@ -36,31 +33,21 @@ Bienvenidos ♥ **MisRutinas** es una página web fitness para administrar rutin
 * Node 18.12.1 (para Angular) 
 * Angular CLI @15.2.6 
 * TypeScript 4.9.4 
+Archivo: frontend/package.json.
 
 #### Backend & DB
 
-* Django 4.2.1
-* Django REST Framework 3.14.0
-* MySQL con Django (*mysql-connector-python 8.0.29, mysqlclient 2.1.1*).
-
-### **STACK 2022**
-
-* HTML5.
-* CSS3.
-* JavaScript.
-* MySQL.
-* Python.
+* Django 5.0.6
+* Django REST Framework 3.15.1
+* BD SQlite o MySQL (*mysql-connector-python 8.0.29, mysqlclient 2.2.9*).
+Archivo: backend/requirements-txt.
 
 
-# ProyectoISPCGrupo55
+### ProyectoISPCGrupo55
 
-Proyecto Integrador (Página Web) | Ciclo Lectivo 2023, Cohorte 2022.
-
-Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del Instituto Superior Politécnico de Córdoba
+[Proyecto Integrador (Página Web) | Ciclo Lectivo 2023, Cohorte 2022.](https://github.com/grupoA7ISPC/ProyectoISPCGrupo55)
 
 
-# MisRutinas--Mobile
+### MisRutinas--Mobile
 
-Proyecto Integrador (Aplicaciones Móviles) | Ciclo Lectivo 2023, Cohorte 2022.
-
-Tecnicatura Superior en Desarrollo Web y Aplicaciones Digitales del Instituto Superior Politécnico de Córdoba
+[Proyecto Integrador (Aplicaciones Móviles) | Ciclo Lectivo 2023, Cohorte 2022.](https://github.com/grupoA7ISPC/MisRutinas--Mobile)

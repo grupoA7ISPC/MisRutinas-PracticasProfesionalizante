@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/background"
+    android:clipChildren="true"
+    android:orientation="vertical"
+    tools:context=".RegistroActivity">
+
+    <ImageView
+        android:id="@+id/volver_registro"
+        android:layout_width="16.03dp"
+        android:layout_height="23dp"
+        android:onClick="btnVolverRegistro"
+        android:src="@mipmap/flecha_volver"/>
+
+    <TextView
+        android:id="@+id/textViewRegistro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="26dp"
+        android:text="Registro"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/textUserName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/inputUsuario"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        android:maxLength="20"/>
+
+    <EditText
+        android:id="@+id/textEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/inputCorreo"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        android:layout_marginTop="20dp"
+        android:maxLength="75"/>
+
+    <EditText
+        android:id="@+id/textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="@string/inputContraseña"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        android:layout_marginTop="20dp"
+        android:maxLength="24"/>
+
+    <EditText
+        android:id="@+id/textNombre"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:clipToOutline="true"
+        android:ems="10"
+        android:hint="@string/inputNombre"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        android:layout_marginTop="20dp"
+        android:maxLength="45"
+        />
+
+    <EditText
+        android:id="@+id/textApellido"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_generico"
+        android:ems="10"
+        android:hint="@string/inputApellido"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:maxLength="45"/>
+
+    <EditText
+        android:id="@+id/textDNI"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_generico"
+        android:ems="10"
+        android:hint="@string/inputDNI"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:maxLength="8"/>
+
+    <Button
+        android:id="@+id/btnInsertar"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:background="@drawable/button_primary"
+        android:text="@string/btnRegister"
+        android:onClick="btnRegistro"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@null" />
+</LinearLayout>

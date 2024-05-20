@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical"
+    tools:context=".VerClaseActivity">
+
+    <ImageView
+        android:id="@+id/btnvolverListaClase"
+        android:layout_width="16.03dp"
+        android:layout_height="23dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="18dp"
+        android:onClick="volverListaClase"
+        android:src="@mipmap/flecha_volver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewNuevaClase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="78dp"
+        android:layout_marginLeft="16dp"
+        android:text="Clase"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:clipToOutline="true"
+        android:ems="10"
+        android:hint="Nombre"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="158dp"
+        />
+
+    <EditText
+        android:id="@+id/txtPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Precio"
+        android:textColorHint="@color/black"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="231dp"/>
+
+    <EditText
+        android:id="@+id/txtDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:hint="Descripción"
+        android:textColorHint="@color/black"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:background="@drawable/input_generico"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="304dp"/>
+
+
+    <Button
+        android:id="@+id/btnGuarda"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/button_primary"
+        android:text="Guardar cambios"
+        app:backgroundTint="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fabEditar"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/button_primary"
+        android:text="Editar"
+        app:backgroundTint="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fabEliminar"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="222dp"
+        android:layout_marginTop="450dp"
+        android:background="@drawable/button_secondary"
+        android:onClick="btnCancelarClase"
+        android:text="Eliminar"
+        android:textColor="@color/black"
+        app:backgroundTint="@null"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
