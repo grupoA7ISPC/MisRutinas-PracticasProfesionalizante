@@ -6,7 +6,7 @@ class Clase(models.Model):
     nombre = models.CharField(max_length=45)
     precio = models.DecimalField(decimal_places=2, max_digits=8)
     descripcion = models.TextField(max_length=400)
-    #imagen = models.TipopilotField
+    imagen = models.ImageField(upload_to='imagenes_clases/', null=True, blank=True)
     duracion = models.CharField(max_length=150)
     
     class Meta:
