@@ -31,7 +31,7 @@
           <td>{{ clase.duracion }}</td>
           <td>
             <button type="button" class="btn btn-primary" [routerLink]="['/editar-clase', clase.id_clase]">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarClase(clase.id_clase)">Eliminar</button>
           </td>
         </tr>
       </tbody>

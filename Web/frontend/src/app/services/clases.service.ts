@@ -26,7 +26,14 @@ export class ClasesService {
   }
 
   deleteClass(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.URL_API}${id}`);
+    return this.http.delete<void>(`${this.URL_API}${id}/`)
+    .pipe(
+      catchError(error => {
+        console.error('Error al eliminar la clase:', error);
+        return throwError('Hubo un problema al eliminar la clase.');
+      })
+    );
+  
   }
 
   updateClass(clase: Clase, id: number, imagenFile?: File | null): Observable<any> {
