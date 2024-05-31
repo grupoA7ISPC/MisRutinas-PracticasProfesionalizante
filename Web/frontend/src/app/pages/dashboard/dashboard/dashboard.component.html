@@ -18,7 +18,7 @@
         <tr *ngFor="let clase of clases">
           <td>{{ clase.id_clase }}</td>
           <td>{{ clase.nombre }}</td>
-          <td>{{ clase.precio }}</td>
+          <td>${{ clase.precio }}</td>
           <td>{{ clase.descripcion }}</td>
           <td>
             <img
@@ -30,7 +30,7 @@
           </td>
           <td>{{ clase.duracion }}</td>
           <td>
-            <button type="button" class="btn btn-primary">Editar</button>
+            <button type="button" class="btn btn-primary" [routerLink]="['/editar-clase', clase.id_clase]">Editar</button>
             <button type="button" class="btn btn-danger">Eliminar</button>
           </td>
         </tr>

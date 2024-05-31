@@ -1,0 +1,20 @@
+<h1>Editar Clase</h1>
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <label for="nombre">Nombre:</label>
+  <input id="nombre" formControlName="nombre" required>
+  
+  <label for="precio">Precio:</label>
+  <input id="precio" type="number" formControlName="precio" required >
+  
+  <label for="descripcion">Descripción:</label>
+  <textarea id="descripcion" formControlName="descripcion" required ></textarea>
+  
+  <label for="duracion">Duración:</label>
+  <input id="duracion" formControlName="duracion" required >
+  
+  <label for="imagen">Imagen:</label>
+  <img *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen" width="100" height="100">
+  <input type="file" (change)="onImagenSeleccionada($event)" accept="image/*">
+  
+  <button type="submit">Guardar Cambios</button>
+</form>
