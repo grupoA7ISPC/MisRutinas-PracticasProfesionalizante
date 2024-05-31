@@ -1,6 +1,38 @@
-form {
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+}
+
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 32px;
+}
+
+.form-group label {
+  align-self: flex-start;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+form input {
+  margin-bottom: 25px;
+}
+
+.btn-container button {
+  margin-right: 10px;
+}
+
+
+.btn-container button:last-child {
+  margin-right: 0;
+}
+
+#description {
+  height: 100px;
+}
+
+.error-message {
+  align-self: flex-start; 
+  margin-top: 5px;
 }

@@ -15,12 +15,12 @@ export class FormClaseComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-     private clasesService: ClasesService,
-     private router: Router
+    private clasesService: ClasesService,
+    private router: Router
     ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(45), Validators.minLength(1)]],
-      price:  [0, [Validators.required, Validators.max(10), Validators.min(0)]],
+      price:  ['', [Validators.required, Validators.max(999999), Validators.min(0)]],
       description:  ['', [Validators.required, Validators.maxLength(400), Validators.minLength(1)]],
       image:  ['', [Validators.required]],
       duration:  ['', [Validators.required, Validators.maxLength(100), Validators.minLength(1)]]
@@ -77,6 +77,10 @@ export class FormClaseComponent {
 
   get description(){
     return this.form.get('description');
+  }
+
+  get image(){
+    return this.form.get('image');
   }
 
   get duration(){
