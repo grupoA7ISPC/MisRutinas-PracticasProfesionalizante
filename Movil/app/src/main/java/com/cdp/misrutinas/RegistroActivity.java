@@ -27,6 +27,8 @@ public class RegistroActivity extends AppCompatActivity {
 
     private EditText textPassword;
 
+    private EditText textTel;
+
     private Button btnInsertar;
     private FirebaseAuth mAuth;
 
@@ -40,6 +42,7 @@ public class RegistroActivity extends AppCompatActivity {
         textDNI = findViewById(R.id.textDNI);
         textEmail = findViewById(R.id.textEmail);
         textPassword = findViewById(R.id.textPassword);
+        textTel = findViewById(R.id.textTel);
         btnInsertar = findViewById(R.id.btnInsertar);
 
         // Inicializa Firebase Authentication
@@ -55,13 +58,14 @@ public class RegistroActivity extends AppCompatActivity {
                 final String nombre = textNombre.getText().toString();
                 final String apellido = textApellido.getText().toString();
                 final String dni = textDNI.getText().toString();
+                final String tel = textTel.getText().toString();
 
                 if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegistroActivity.this, "Rellene los campos obligatorios", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegistroActivity.this, "Rellene todos los campos.", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                boolean validUser = crud.isValidUser(email, password, nombre, apellido, dni);
+                boolean validUser = crud.isValidUser(email, password, nombre, apellido, dni, tel);
 
                 if (validUser) {
                     // Registra al usuario en Firebase Authentication
@@ -73,7 +77,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         // El usuario se ha registrado con éxito en Firebase
                                         final FirebaseUser user = mAuth.getCurrentUser();
 
-                                        long id = crud.insertarUsuario(email, password, nombre, apellido, dni);
+                                        long id = crud.insertarUsuario(email, password, nombre, apellido, dni, tel);
 
                                         if (id != -1) {
                                             // Registro exitoso en Firebase y en la base de datos local

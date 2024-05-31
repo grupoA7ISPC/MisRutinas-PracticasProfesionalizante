@@ -58,40 +58,60 @@ public class CrudCliente extends MRSQLiteHelper{
 
 
     //------------------------------------
-    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
-    public boolean isValidUser(String email, String password, String nombre, String apellido, String dni) {
+    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
+    public boolean isValidUser(String email, String password, String nombre, String apellido, String dni, String tel) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(context, "Los campos email y contraseña son obligatorios." , Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellido) || TextUtils.isEmpty(dni)) {
+            Toast.makeText(context, "Rellene todos los campos." , Toast.LENGTH_SHORT).show();
             db.close();
             return false;
         }
 
         if (!areFieldsValid(
                 new FieldLengthValidation(email, 8, 75),
-                new FieldLengthValidation(password, 8, 16)
+                new FieldLengthValidation(password, 8, 16),
+                new FieldLengthValidation(nombre, 3, 15),
+                new FieldLengthValidation(apellido, 3, 15),
+                new FieldLengthValidation(dni, 8, 8),
+                new FieldLengthValidation(tel, 10, 15)
         )) {
             if (email.length() < 8 || email.length() > 75) {
-                Toast.makeText(context, "Email debe tener entre 8 y 75 caracteres.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "El email debe tener entre 8 y 75 caracteres.", Toast.LENGTH_SHORT).show();
+            } else if (!isValidEmail(db, email)) {
+                Toast.makeText(context, "Ingrese un email válido.", Toast.LENGTH_SHORT).show();
+                db.close();
+                return false;
             }
 
             if (password.length() < 8 || password.length() > 16) {
-                Toast.makeText(context, "Password debe tener entre 8 y 16 caracteres.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "La contraseña debe tener entre 8 y 16 caracteres.", Toast.LENGTH_SHORT).show();
             }
 
-            db.close();
-            return false;
-        }
+            if (nombre.length() < 3 || nombre.length() > 15) {
+                Toast.makeText(context, "El nombre debe tener entre 3 y 15 caracteres.", Toast.LENGTH_SHORT).show();
+            }
 
-        if (!isValidEmail(db, email)) {
-            Toast.makeText(context, "Ingrese un email válido", Toast.LENGTH_SHORT).show();
+            if (apellido.length() < 3 || apellido.length() > 15) {
+                Toast.makeText(context, "El apellido debe tener entre 3 y 15 caracteres.", Toast.LENGTH_SHORT).show();
+            }
+
+            if(tel.length() < 10 || tel.length() > 15){
+                Toast.makeText(context, "Ingrese un teléfono válido, entre 10-15 caracteres con código de área y sin 15.", Toast.LENGTH_SHORT).show();
+            }
+
+            if (!dni.matches("\\d{8}")) {
+                Toast.makeText(context, "El DNI debe tener 8 dígitos numéricos.", Toast.LENGTH_SHORT).show();
+                db.close();
+                return false;
+            }
+
             db.close();
             return false;
         }
 
         if (existeRegistro(db, email, "email")) {
-            Toast.makeText(context, "El email ya está registrado.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Este email ya está registrado.", Toast.LENGTH_SHORT).show();
             db.close();
             return false;
         }
@@ -99,10 +119,10 @@ public class CrudCliente extends MRSQLiteHelper{
         return true;
     }
 
-    public long insertarUsuario(String email, String password, String nombre, String apellido, String dni) {
+    public long insertarUsuario(String email, String password, String nombre, String apellido, String dni, String tel) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (isValidUser(email, password, nombre, apellido, dni)) {
+        if (isValidUser(email, password, nombre, apellido, dni, tel)) {
             try {
                 ContentValues values = new ContentValues();
                 values.put("email", email); // NOT NULL

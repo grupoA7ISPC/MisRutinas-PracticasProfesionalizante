@@ -39,7 +39,7 @@
         android:visibility="visible"
         android:background="@drawable/input_generico"
         android:layout_marginTop="20dp"
-        android:maxLength="75"/>
+        android:maxLength="150"/>
 
     <EditText
         android:id="@+id/textPassword"
@@ -66,7 +66,7 @@
         android:visibility="visible"
         android:background="@drawable/input_generico"
         android:layout_marginTop="20dp"
-        android:maxLength="45"
+        android:maxLength="15"
         />
 
     <EditText
@@ -80,7 +80,7 @@
         android:inputType="text"
         android:textAlignment="center"
         android:visibility="visible"
-        android:maxLength="45"/>
+        android:maxLength="15"/>
 
     <EditText
         android:id="@+id/textDNI"
@@ -94,6 +94,20 @@
         android:textAlignment="center"
         android:visibility="visible"
         android:maxLength="8"/>
+
+    <EditText
+        android:id="@+id/textTel"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/input_generico"
+        android:ems="10"
+        android:hint="@string/inputTel"
+        android:inputType="phone"
+        android:textAlignment="center"
+        android:visibility="visible"
+        android:maxLength="15"
+        />
 
     <Button
         android:id="@+id/btnInsertar"
