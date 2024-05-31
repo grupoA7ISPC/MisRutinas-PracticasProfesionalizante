@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegistroActivity extends AppCompatActivity {
     private CrudCliente crud;
-
-    private EditText textUserName;
     private EditText textNombre;
     private EditText textApellido;
     private EditText textDNI;
@@ -37,7 +35,6 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        textUserName = findViewById(R.id.textUserName);
         textNombre = findViewById(R.id.textNombre);
         textApellido = findViewById(R.id.textApellido);
         textDNI = findViewById(R.id.textDNI);
@@ -53,19 +50,18 @@ public class RegistroActivity extends AppCompatActivity {
         btnInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String username = textUserName.getText().toString();
                 final String email = textEmail.getText().toString();
                 final String password = textPassword.getText().toString();
                 final String nombre = textNombre.getText().toString();
                 final String apellido = textApellido.getText().toString();
                 final String dni = textDNI.getText().toString();
 
-                if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegistroActivity.this, "Campos obligatorios incompletos", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(RegistroActivity.this, "Rellene los campos obligatorios", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                boolean validUser = crud.isValidUser(username, email, password, nombre, apellido, dni);
+                boolean validUser = crud.isValidUser(email, password, nombre, apellido, dni);
 
                 if (validUser) {
                     // Registra al usuario en Firebase Authentication
@@ -77,7 +73,7 @@ public class RegistroActivity extends AppCompatActivity {
                                         // El usuario se ha registrado con éxito en Firebase
                                         final FirebaseUser user = mAuth.getCurrentUser();
 
-                                        long id = crud.insertarUsuario(username, email, password, nombre, apellido, dni);
+                                        long id = crud.insertarUsuario(email, password, nombre, apellido, dni);
 
                                         if (id != -1) {
                                             // Registro exitoso en Firebase y en la base de datos local

@@ -58,25 +58,20 @@ public class CrudCliente extends MRSQLiteHelper{
 
 
     //------------------------------------
-    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
-    public boolean isValidUser(String username, String email, String password, String nombre, String apellido, String dni) {
+    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
+    public boolean isValidUser(String email, String password, String nombre, String apellido, String dni) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(context, "Los campos Username, Email y Contraseña son obligatorios." , Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(context, "Los campos email y contraseña son obligatorios." , Toast.LENGTH_SHORT).show();
             db.close();
             return false;
         }
 
         if (!areFieldsValid(
-                new FieldLengthValidation(username, 4, 20),
                 new FieldLengthValidation(email, 8, 75),
                 new FieldLengthValidation(password, 8, 16)
         )) {
-            if (username.length() < 4 || username.length() > 20) {
-                Toast.makeText(context, "Username debe tener entre 4 y 20 caracteres.", Toast.LENGTH_SHORT).show();
-            }
-
             if (email.length() < 8 || email.length() > 75) {
                 Toast.makeText(context, "Email debe tener entre 8 y 75 caracteres.", Toast.LENGTH_SHORT).show();
             }
@@ -88,14 +83,15 @@ public class CrudCliente extends MRSQLiteHelper{
             db.close();
             return false;
         }
+
         if (!isValidEmail(db, email)) {
-            Toast.makeText(context, "El campo Email tiene un formato inválido o ya esta en uso", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Ingrese un email válido", Toast.LENGTH_SHORT).show();
             db.close();
             return false;
         }
 
-        if (existeRegistro(db, username, "username")) {
-            Toast.makeText(context, "El nombre de usuario ya existe.", Toast.LENGTH_SHORT).show();
+        if (existeRegistro(db, email, "email")) {
+            Toast.makeText(context, "El email ya está registrado.", Toast.LENGTH_SHORT).show();
             db.close();
             return false;
         }
@@ -103,13 +99,12 @@ public class CrudCliente extends MRSQLiteHelper{
         return true;
     }
 
-    public long insertarUsuario(String username, String email, String password, String nombre, String apellido, String dni) {
+    public long insertarUsuario(String email, String password, String nombre, String apellido, String dni) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (isValidUser(username, email, password, nombre, apellido, dni)) {
+        if (isValidUser(email, password, nombre, apellido, dni)) {
             try {
                 ContentValues values = new ContentValues();
-                values.put("username", username); // NOT NULL
                 values.put("email", email); // NOT NULL
                 values.put("pass", password); // NOT NULL
                 values.put("nombre", nombre); // NULL
@@ -127,7 +122,7 @@ public class CrudCliente extends MRSQLiteHelper{
                     return -1;
                 }
             } catch (Exception e) {
-                Toast.makeText(context, "Error al insertar el registro.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al crear su usuario. Intente nuevamente más tarde", Toast.LENGTH_SHORT).show();
                 db.close();
                 return -1;
             }
@@ -154,7 +149,7 @@ public class CrudCliente extends MRSQLiteHelper{
                 usuario.setEmail(email);
                 usuario.setPassword(cursor.getString(7));
                 usuario.setUsername(cursor.getString(1));
-                //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
+                //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
             }
 
             cursor.close();
