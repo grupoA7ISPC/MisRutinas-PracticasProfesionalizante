@@ -1,42 +1,47 @@
 .table-container {
   margin: 20px;
-  position: relative;
-}
-
-.header {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  display: flex;
-  justify-content: space-between;
 }
 
 .create-button {
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .table-wrapper {
-  margin-top: 50px;
+  overflow-x: auto;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  min-width: 600px;
 }
 
 th, td {
   padding: 8px;
   text-align: center;
   border: 1px solid #ddd;
+  vertical-align: middle;
 }
 
 th {
   background-color: #f2f2f2;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.action-buttons .btn {
+  width: 48%;
+  padding: 8px;
+  box-sizing: border-box;
 }
