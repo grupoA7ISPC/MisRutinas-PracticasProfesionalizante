@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,7 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { FormClaseComponent } from './pages/dashboard/form-clase/form-clase.component';
 import { TabClaseComponent } from './pages/dashboard/tab-clase/tab-clase.component';
+import { EditarClaseComponent } from './pages/dashboard/editar-clase/editar-clase.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,8 @@ import { TabClaseComponent } from './pages/dashboard/tab-clase/tab-clase.compone
     NavbarComponent,
     FooterComponent,
     FormClaseComponent,
-    TabClaseComponent
+    TabClaseComponent,
+    EditarClaseComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { TabClaseComponent } from './pages/dashboard/tab-clase/tab-clase.compone
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

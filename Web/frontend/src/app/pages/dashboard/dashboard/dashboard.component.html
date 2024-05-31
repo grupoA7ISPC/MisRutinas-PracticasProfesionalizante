@@ -1,9 +1,9 @@
-<div class="table-container">
+<div class="container">
   <h1>Bienvenido {{ username }}</h1>
-  <button class="create-button"><a class="nav-link" routerLink="/crear-clase">Crear Clase</a></button>
-  <div class="table-wrapper">
-    <table>
-      <thead>
+  <button class="btn btn-primary mb-3"><a class="nav-link text-white" routerLink="/crear-clase">Crear Clase</a></button>
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead class="thead-dark">
         <tr>
           <th>#</th>
           <th>Nombre</th>
@@ -18,20 +18,17 @@
         <tr *ngFor="let clase of clases">
           <td>{{ clase.id_clase }}</td>
           <td>{{ clase.nombre }}</td>
-          <td>{{ clase.precio }}</td>
-          <td>{{ clase.descripcion }}</td>
+          <td>${{ clase.precio }}</td>
+          <td class="text-truncate" style="max-width: 400px;">{{ clase.descripcion }}</td>
           <td>
-            <img
-              [src]="clase.imagen"
-              alt="{{ clase.nombre }}"
-              width="100"
-              height="100"
-            />
+            <img [src]="clase.imagen" alt="{{ clase.nombre }}" class="img-fluid" style="max-width: 100px; height: auto;">
           </td>
           <td>{{ clase.duracion }}</td>
           <td>
-            <button type="button" class="btn btn-primary">Editar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-primary" [routerLink]="['/editar-clase', clase.id_clase]">Editar</button>
+            <button type="button" class="btn btn-danger" (click)="eliminarClase(clase.id_clase)">Eliminar</button>
+          </div>
           </td>
         </tr>
       </tbody>

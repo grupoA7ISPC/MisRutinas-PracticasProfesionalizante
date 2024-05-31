@@ -1,0 +1,49 @@
+<div class="container text-center">
+  <h1>Editar Clase</h1>
+  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input id="nombre" class="form-control" formControlName="nombre" required>
+      <div *ngIf="formulario.controls['nombre']?.errors && formulario.controls['nombre']?.touched" class="error-message">
+        <p *ngIf="formulario.controls['nombre']?.hasError('required')" class="text-danger">Nombre es requerido.</p>
+        <p *ngIf="formulario.controls['nombre']?.hasError('minlength') || formulario.controls['nombre']?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 1 y 45 caracteres.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input id="precio" type="number" class="form-control" formControlName="precio" required>
+      <div *ngIf="formulario.controls['precio']?.errors && formulario.controls['precio']?.touched" class="error-message">
+        <p *ngIf="formulario.controls['precio']?.hasError('required')" class="text-danger">Precio es requerido.</p>
+        <p *ngIf="formulario.controls['precio']?.hasError('min') || formulario.controls['precio']?.hasError('max')" class="text-danger">El precio debe ser entre 1 y 6 dígitos.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" class="form-control" formControlName="descripcion" required></textarea>
+      <div *ngIf="formulario.controls['descripcion']?.errors && formulario.controls['descripcion']?.touched" class="error-message">
+        <p *ngIf="formulario.controls['descripcion']?.hasError('required')" class="text-danger">Descripción es requerida.</p>
+        <p *ngIf="formulario.controls['descripcion']?.hasError('minlength') || formulario.controls['descripcion']?.hasError('maxlength')" class="text-danger">El texto debe tener entre 1 y 400 caracteres.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="duracion">Duración:</label>
+      <input id="duracion" class="form-control" formControlName="duracion" required>
+      <div *ngIf="formulario.controls['duracion']?.errors && formulario.controls['duracion']?.touched" class="error-message">
+        <p *ngIf="formulario.controls['duracion']?.hasError('required')" class="text-danger">Duración es requerida.</p>
+        <p *ngIf="formulario.controls['duracion']?.hasError('minlength') || formulario.controls['duracion']?.hasError('maxlength')" class="text-danger">El texto debe tener entre 1 y 100 caracteres.</p>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="imagen">Imagen:</label>
+      <img *ngIf="imagenURL" [src]="imagenURL" alt="Vista previa de la imagen" width="100" height="100">
+      <input type="file" (change)="onImagenSeleccionada($event)" accept="image/*">
+      <div *ngIf="formulario.controls['imagen']?.errors && formulario.controls['imagen']?.touched" class="error-message">
+        <p *ngIf="formulario.controls['imagen']?.hasError('required')" class="text-danger">La imagen es requerida.</p>
+      </div>
+    </div>
+    <div class="btn-container">
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="button" class="btn btn-danger"><a class="nav-link" routerLink="/dashboard">Cancelar</a></button>
+    </div>
+  </form>
+</div>
