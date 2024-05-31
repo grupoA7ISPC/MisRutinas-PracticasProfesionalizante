@@ -21,8 +21,14 @@ export class ClasesService {
     return this.http.get<Clase>(`${this.URL_API}${id}/`);
   }
 
-  createClass(clase: Clase): Observable<Clase> {
-    return this.http.post<Clase>(this.URL_API, clase);
+  createClass(clase: FormData): Observable<Clase> {
+    return this.http.post<Clase>(this.URL_API, clase)
+    .pipe(
+      catchError(error => {
+        console.error('Error al crear la clase:', error);
+        return throwError('Hubo un problema al crear la clase.');
+      })
+    );
   }
 
   deleteClass(id: number): Observable<void> {
