@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cdp.misrutinas.data.ValidationUserResult;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -60,11 +62,6 @@ public class RegistroActivity extends AppCompatActivity {
                 final String dni = textDNI.getText().toString();
                 final String tel = textTel.getText().toString();
 
-//                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-//                    Toast.makeText(RegistroActivity.this, "Rellene todos los campos.", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-
                 emailError.setVisibility(View.GONE);
                 passwordError.setVisibility(View.GONE);
                 nombreError.setVisibility(View.GONE);
@@ -72,9 +69,34 @@ public class RegistroActivity extends AppCompatActivity {
                 dniError.setVisibility(View.GONE);
                 telError.setVisibility(View.GONE);
 
-                boolean validUser = crud.isValidUser(email, password, nombre, apellido, dni, tel);
+                ValidationUserResult validationResult = crud.isValidUser(email, password, nombre, apellido, dni, tel);
 
-                if (validUser) {
+                if(!validationResult.isValid) {
+                    if (validationResult.emailError != null) {
+                        emailError.setText(validationResult.emailError);
+                        emailError.setVisibility(View.VISIBLE);
+                    }
+                    if (validationResult.passwordError != null) {
+                        passwordError.setText(validationResult.passwordError);
+                        passwordError.setVisibility(View.VISIBLE);
+                    }
+                    if (validationResult.nombreError != null) {
+                        nombreError.setText(validationResult.nombreError);
+                        nombreError.setVisibility(View.VISIBLE);
+                    }
+                    if (validationResult.apellidoError != null) {
+                        apellidoError.setText(validationResult.apellidoError);
+                        apellidoError.setVisibility(View.VISIBLE);
+                    }
+                    if (validationResult.dniError != null) {
+                        dniError.setText(validationResult.dniError);
+                        dniError.setVisibility(View.VISIBLE);
+                    }
+                    if (validationResult.telError != null) {
+                        telError.setText(validationResult.telError);
+                        telError.setVisibility(View.VISIBLE);
+                    }
+                } else {
                     // Registra al usuario en Firebase Authentication
                     mAuth.createUserWithEmailAndPassword(email, password)
                             .addOnCompleteListener(RegistroActivity.this, new OnCompleteListener<AuthResult>() {
@@ -83,7 +105,6 @@ public class RegistroActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
                                         // El usuario se ha registrado con éxito en Firebase
                                         final FirebaseUser user = mAuth.getCurrentUser();
-
                                         long id = crud.insertarUsuario(email, password, nombre, apellido, dni, tel);
 
                                         if (id != -1) {

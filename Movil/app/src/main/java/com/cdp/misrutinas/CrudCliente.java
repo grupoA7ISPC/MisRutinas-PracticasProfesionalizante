@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.cdp.misrutinas.entidades.Clientes;
 import com.cdp.misrutinas.entidades.Usuario;
+import com.cdp.misrutinas.data.ValidationUserResult;
 
 import java.util.ArrayList;
 
@@ -57,15 +58,25 @@ public class CrudCliente extends MRSQLiteHelper{
     }
 
 
-    //------------------------------------
-    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
-    public boolean isValidUser(String email, String password, String nombre, String apellido, String dni, String tel) {
+    public ValidationUserResult isValidUser(String email, String password, String nombre, String apellido, String dni, String tel) {
+        ValidationUserResult result = new ValidationUserResult();
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellido) || TextUtils.isEmpty(dni)) {
-            Toast.makeText(context, "Rellene todos los campos." , Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellido) || TextUtils.isEmpty(dni) || TextUtils.isEmpty(tel)) {
+            if (TextUtils.isEmpty(email)) result.emailError = "Complete su email.";
+            if (TextUtils.isEmpty(password)) result.passwordError = "Introduzca una contraseña.";
+            if (TextUtils.isEmpty(nombre)) result.nombreError = "Introduzca su nombre.";
+            if (TextUtils.isEmpty(apellido)) result.apellidoError = "Introduzca su apellido.";
+            if (TextUtils.isEmpty(dni)) result.dniError = "Complete con su DNI.";
+            if (TextUtils.isEmpty(tel)) result.telError = "Complete con su nro de teléfono (sin 0 ni 15).";
+            result.isValid = false;
+            return result;
+        }
+
+        if (existeRegistro(db, email, "email")) {
+            result.emailError = "Este email ya está registrado.";
+            result.isValid = false;
+            return result;
         }
 
         if (!areFieldsValid(
@@ -77,73 +88,64 @@ public class CrudCliente extends MRSQLiteHelper{
                 new FieldLengthValidation(tel, 10, 15)
         )) {
             if (email.length() < 8 || email.length() > 75) {
-                Toast.makeText(context, "El email debe tener entre 8 y 75 caracteres.", Toast.LENGTH_SHORT).show();
-            } else if (!isValidEmail(db, email)) {
-                Toast.makeText(context, "Ingrese un email válido.", Toast.LENGTH_SHORT).show();
-                db.close();
-                return false;
+                result.emailError = "El email debe tener entre 8 y 75 caracteres.";
+            }
+
+            if (!isValidEmail(db, email)) {
+                result.emailError = "Ingrese un email válido.";
             }
 
             if (password.length() < 8 || password.length() > 16) {
-                Toast.makeText(context, "La contraseña debe tener entre 8 y 16 caracteres.", Toast.LENGTH_SHORT).show();
+                result.passwordError = "La contraseña debe tener entre 8 y 16 caracteres.";
             }
 
             if (nombre.length() < 3 || nombre.length() > 15) {
-                Toast.makeText(context, "El nombre debe tener entre 3 y 15 caracteres.", Toast.LENGTH_SHORT).show();
+                result.nombreError = "El nombre debe tener entre 3 y 15 caracteres.";
             }
 
             if (apellido.length() < 3 || apellido.length() > 15) {
-                Toast.makeText(context, "El apellido debe tener entre 3 y 15 caracteres.", Toast.LENGTH_SHORT).show();
+                result.apellidoError = "El apellido debe tener entre 3 y 15 caracteres.";
             }
 
-            if(tel.length() < 10 || tel.length() > 15){
-                Toast.makeText(context, "Ingrese un teléfono válido, entre 10-15 caracteres con código de área y sin 15.", Toast.LENGTH_SHORT).show();
+            if (tel.length() < 10 || tel.length() > 15) {
+                result.telError = "Ingrese un teléfono válido, entre 10-15 caracteres con código de área y sin 15.";
             }
 
             if (!dni.matches("\\d{8}")) {
-                Toast.makeText(context, "El DNI debe tener 8 dígitos numéricos.", Toast.LENGTH_SHORT).show();
-                db.close();
-                return false;
+                result.dniError = "El DNI debe tener 8 dígitos numéricos.";
             }
 
-            db.close();
-            return false;
+            result.isValid = false;
+            return result;
         }
 
-        if (existeRegistro(db, email, "email")) {
-            Toast.makeText(context, "Este email ya está registrado.", Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
-        }
+        result.isValid = true;
 
-        return true;
+        return result;
     }
 
     public long insertarUsuario(String email, String password, String nombre, String apellido, String dni, String tel) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (isValidUser(email, password, nombre, apellido, dni, tel)) {
+        ValidationUserResult validationResult = isValidUser(email, password, nombre, apellido, dni, tel);
+        if (validationResult.isValid) {
             try {
                 ContentValues values = new ContentValues();
-                values.put("email", email); // NOT NULL
-                values.put("pass", password); // NOT NULL
-                values.put("nombre", nombre); // NULL
-                values.put("apellido", apellido); // NULL
-                values.put("dni", dni); // NULL
+                values.put("email", email);
+                values.put("pass", password);
+                values.put("nombre", nombre);
+                values.put("apellido", apellido);
+                values.put("dni", dni);
                 values.put("tel", tel);
-                values.put("id_rol", 1); // NOT NULL
+                values.put("id_rol", 1);
 
                 long idUsuario = db.insert("Usuario", null, values);
 
-                if (idUsuario != -1) {
-                    db.close();
-                    return idUsuario;
-                } else {
-                    db.close();
-                    return -1;
-                }
+                db.close();
+                return idUsuario;
+
             } catch (Exception e) {
-                Toast.makeText(context, "Error al crear su usuario. Intente nuevamente más tarde", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al crear usuario desde CrudCliente", Toast.LENGTH_SHORT).show();
                 db.close();
                 return -1;
             }
