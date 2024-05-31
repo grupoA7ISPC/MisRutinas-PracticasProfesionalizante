@@ -130,6 +130,7 @@ public class CrudCliente extends MRSQLiteHelper{
                 values.put("nombre", nombre); // NULL
                 values.put("apellido", apellido); // NULL
                 values.put("dni", dni); // NULL
+                values.put("tel", tel);
                 values.put("id_rol", 1); // NOT NULL
 
                 long idUsuario = db.insert("Usuario", null, values);

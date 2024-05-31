@@ -20,14 +20,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegistroActivity extends AppCompatActivity {
     private CrudCliente crud;
-    private EditText textNombre;
-    private EditText textApellido;
-    private EditText textDNI;
-    private EditText textEmail;
-
-    private EditText textPassword;
-
-    private EditText textTel;
+    private EditText textNombre, textApellido, textDNI, textEmail, textPassword, textTel;
+    private TextView emailError, passwordError, nombreError, apellidoError, dniError, telError;
 
     private Button btnInsertar;
     private FirebaseAuth mAuth;
@@ -45,10 +39,16 @@ public class RegistroActivity extends AppCompatActivity {
         textTel = findViewById(R.id.textTel);
         btnInsertar = findViewById(R.id.btnInsertar);
 
+        emailError = findViewById(R.id.emailError);
+        passwordError = findViewById(R.id.passwordError);
+        nombreError = findViewById(R.id.nombreError);
+        apellidoError = findViewById(R.id.apellidoError);
+        dniError = findViewById(R.id.dniError);
+        telError = findViewById(R.id.telError);
+
         // Inicializa Firebase Authentication
         mAuth = FirebaseAuth.getInstance();
         crud = new CrudCliente(this);
-
 
         btnInsertar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,10 +60,17 @@ public class RegistroActivity extends AppCompatActivity {
                 final String dni = textDNI.getText().toString();
                 final String tel = textTel.getText().toString();
 
-                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                    Toast.makeText(RegistroActivity.this, "Rellene todos los campos.", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+//                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+//                    Toast.makeText(RegistroActivity.this, "Rellene todos los campos.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+
+                emailError.setVisibility(View.GONE);
+                passwordError.setVisibility(View.GONE);
+                nombreError.setVisibility(View.GONE);
+                apellidoError.setVisibility(View.GONE);
+                dniError.setVisibility(View.GONE);
+                telError.setVisibility(View.GONE);
 
                 boolean validUser = crud.isValidUser(email, password, nombre, apellido, dni, tel);
 
@@ -85,7 +92,7 @@ public class RegistroActivity extends AppCompatActivity {
                                             irLogin();
                                         } else {
                                             // Registro exitoso en Firebase, pero error en la base de datos local
-                                            Toast.makeText(RegistroActivity.this, "Registro exitoso en Firebase, pero error al insertar el registro en la base de datos local.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(RegistroActivity.this, "Exito en Firebase, error local", Toast.LENGTH_SHORT).show();
                                         }
                                     } else {
                                         // Si el registro falla en Firebase, muestra un mensaje de error
