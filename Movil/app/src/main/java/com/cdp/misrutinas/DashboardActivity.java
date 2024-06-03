@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
+
+import com.cdp.misrutinas.entidades.Usuario;
+import com.cdp.misrutinas.data.UserSession;
+
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +34,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         MRSQLiteHelper usdbh = new MRSQLiteHelper(this);
         SQLiteDatabase db = usdbh.getWritableDatabase();
+        Usuario usuario = UserSession.getInstance().getCurrentUser();
 
         // Obtener la referencia al TextView
         TextView tvClases = findViewById (R.id.totalClases);
@@ -38,11 +43,8 @@ public class DashboardActivity extends AppCompatActivity {
         textUsername = findViewById(R.id.textUsername);
 
 
-        Intent intent = getIntent();
-
-        if (intent.hasExtra("username")) {
-            String username = intent.getStringExtra("username");
-            textUsername.setText("@" + username);
+        if (usuario != null) {
+            textUsername.setText("@" + usuario.getNombre());
         } else {
             textUsername.setText("de vuelta");
         }

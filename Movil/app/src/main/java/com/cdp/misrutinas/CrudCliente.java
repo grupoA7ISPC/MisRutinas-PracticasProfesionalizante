@@ -168,11 +168,15 @@ public class CrudCliente extends MRSQLiteHelper{
             if (cursor.moveToFirst()) {
                 usuario = new Usuario();
 
-                // Retrieve data from the cursor
                 usuario.setEmail(email);
-                usuario.setPassword(cursor.getString(7));
-                usuario.setUsername(cursor.getString(1));
-                //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
+                usuario.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+                usuario.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+                usuario.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
+                usuario.setDni(cursor.getString(cursor.getColumnIndexOrThrow("dni")));
+                usuario.setTel(cursor.getString(cursor.getColumnIndexOrThrow("tel")));
+                usuario.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("pass")));
+                usuario.setId_rol(cursor.getInt(cursor.getColumnIndexOrThrow("id_rol")));
+                //TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(15) NOT NULL, nombre VARCHAR(15) NOT NULL, dni INTEGER NOT NULL, email VARCHAR(75) NOT NULL, tel VARCHAR(15) NOT NULL, pass VARCHAR(16) NOT NULL, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))
             }
 
             cursor.close();
