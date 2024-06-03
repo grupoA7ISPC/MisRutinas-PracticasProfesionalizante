@@ -1,14 +1,13 @@
 package com.cdp.misrutinas.entidades;
 
 public class Usuario {
-    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
     private int idUsuario;
-    private String username;
-    private String password;
-    private String nombre;
     private String apellido;
+    private String nombre;
     private String dni;
     private String email;
+    private String tel;
+    private String password;
     private int id_rol;
 
     public int getId() {
@@ -55,14 +54,6 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -70,6 +61,10 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getTel() { return tel; }
+
+    public void setTel(String tel) { this.tel = tel; }
 
     public int getId_rol() {
         return id_rol;

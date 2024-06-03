@@ -11,7 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.cdp.misrutinas.data.UserSession;
 import com.cdp.misrutinas.entidades.Usuario;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.AuthResult;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,13 +44,14 @@ public class IniciarSesionActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
+                UserSession usuario = UserSession.getInstance();
+                if (user != null && usuario != null) {
                     Intent intent = new Intent(IniciarSesionActivity.this, DashboardActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
-
-                } else {
+//
+//                } else {
 //                    Intent intent = new Intent(IniciarSesionActivity.this, IniciarSesionActivity.class);
 //                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 //                    startActivity(intent);
@@ -98,7 +101,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    showDashboard(usuario.getUsername());
+                                    UserSession.getInstance().setCurrentUser(usuario);
+                                    showDashboard();
                                 } else {
                                     // If sign in fails, display a message to the user.
                                     Toast.makeText(IniciarSesionActivity.this, "Se ha producido un error al autenticar el usuario. Usuario inexistente y/o contraseña incorrecta",
@@ -113,9 +117,8 @@ public class IniciarSesionActivity extends AppCompatActivity {
     }
 
     //Reemplazar:
-    private void showDashboard(String username) {
+    private void showDashboard() {
         Intent intent = new Intent(this, DashboardActivity.class);
-        intent.putExtra("username", username);
         startActivity(intent);
         finish();
     }
