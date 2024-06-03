@@ -19,11 +19,15 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 
 
+
+
 public class IniciarSesionActivity extends AppCompatActivity {
     EditText editTextPassword, editTextCorreo;
     Button btnIngresar;
     private CrudCliente db;
     private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +38,24 @@ public class IniciarSesionActivity extends AppCompatActivity {
         editTextCorreo = findViewById(R.id.editTextCorreo);
 
         mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(IniciarSesionActivity.this, DashboardActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish();
 
+                } else {
+//                    Intent intent = new Intent(IniciarSesionActivity.this, IniciarSesionActivity.class);
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+//                    finish();
+                }
+            }
+        };
         btnIngresar = findViewById(R.id.btnIngresar);
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +63,20 @@ public class IniciarSesionActivity extends AppCompatActivity {
                 iniciarSesion();
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     public void btnVolverLogin(View view){
@@ -82,5 +117,6 @@ public class IniciarSesionActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DashboardActivity.class);
         intent.putExtra("username", username);
         startActivity(intent);
+        finish();
     }
 }

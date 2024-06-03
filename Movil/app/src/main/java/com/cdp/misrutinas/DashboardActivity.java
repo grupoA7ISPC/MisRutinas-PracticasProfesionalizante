@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
+import com.google.firebase.auth.FirebaseAuth;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -18,12 +19,14 @@ import com.google.android.material.navigation.NavigationBarView;
 public class DashboardActivity extends AppCompatActivity {
 
     TextView textUsername;
+    private FirebaseAuth mAuth;
 
     BottomNavigationView nav;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        mAuth = FirebaseAuth.getInstance();
 
         MRSQLiteHelper usdbh = new MRSQLiteHelper(this);
         SQLiteDatabase db = usdbh.getWritableDatabase();
@@ -98,7 +101,10 @@ public class DashboardActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void btnLogout(View view){
+        mAuth.signOut();
         Intent intent=new Intent(DashboardActivity.this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }
