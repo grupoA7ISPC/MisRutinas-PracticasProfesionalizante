@@ -13,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cdp.misrutinas.data.ValidationUserResult;
+import com.cdp.misrutinas.data.UserSession;
 
+import com.cdp.misrutinas.entidades.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,6 +29,7 @@ public class RegistroActivity extends AppCompatActivity {
 
     private Button btnInsertar;
     private FirebaseAuth mAuth;
+    private CrudCliente db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,12 +107,16 @@ public class RegistroActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // El usuario se ha registrado con éxito en Firebase
+
                                         final FirebaseUser user = mAuth.getCurrentUser();
                                         long id = crud.insertarUsuario(email, password, nombre, apellido, dni, tel);
 
                                         if (id != -1) {
                                             // Registro exitoso en Firebase y en la base de datos local
-                                            Toast.makeText(RegistroActivity.this, "¡Registro exitoso!", Toast.LENGTH_SHORT).show();
+                                            Usuario usuario = crud.getUsuariofromDB(email);
+                                            UserSession.getInstance().setCurrentUser(usuario);
+
+                                            Toast.makeText(RegistroActivity.this, "¡Registro exitoso! ¡Bienvenido!", Toast.LENGTH_SHORT).show();
                                             irLogin();
                                         } else {
                                             // Registro exitoso en Firebase, pero error en la base de datos local

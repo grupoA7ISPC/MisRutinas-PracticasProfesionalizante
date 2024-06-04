@@ -21,4 +21,6 @@ public class UserSession {
     public Usuario getCurrentUser() {
         return currentUser;
     }
+
+    public void logout() { this.currentUser = null; }
 }
