@@ -36,7 +36,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Nombre -->
+    <Button
+        android:id="@+id/btnHomeWeb"
+        android:layout_width="181dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="115dp"
+        android:layout_marginTop="650dp"
+        android:background="@drawable/button_primary"
+        android:text="Entrar"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:backgroundTint="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
         android:id="@+id/editTextNombre"

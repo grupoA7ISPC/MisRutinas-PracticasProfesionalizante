@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:orientation="vertical"
     android:clipChildren="true"
+    android:orientation="vertical"
     android:padding="16dp"
     tools:context=".EditarSocioActivity">
 
@@ -38,11 +38,11 @@
         android:id="@+id/textViewSocio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:text="Verónica Torres"
         android:textColor="@color/rojoEntrenador"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -53,107 +53,106 @@
         android:id="@+id/labelNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/inputNombre"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextNombre"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_generico"
         android:clipToOutline="true"
         android:ems="10"
-        android:textAlignment="center"
-        android:layout_marginBottom="20dp"
         android:hint="Verónica"
-        android:textColorHint="@color/black"
         android:inputType="text"
-        android:visibility="visible"
-        android:background="@drawable/input_generico"
         android:maxLength="45"
-        />
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/labelApellido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/inputApellido"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextApellido"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_generico"
         android:ems="10"
         android:hint="Torres"
-        android:textColorHint="@color/black"
         android:inputType="text"
+        android:maxLength="45"
         android:textAlignment="center"
-        android:visibility="visible"
-        android:background="@drawable/input_generico"
-        android:layout_marginBottom="20dp"
-        android:maxLength="45"/>
+        android:textColorHint="@color/black"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/labelDNI"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/inputDNI"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextNomUsuario"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_generico"
         android:ems="10"
         android:hint="87654321"
-        android:textColorHint="@color/black"
         android:inputType="text"
+        android:maxLength="8"
         android:textAlignment="center"
-        android:visibility="visible"
-        android:background="@drawable/input_generico"
-        android:layout_marginBottom="20dp"
-        android:maxLength="8"/>
+        android:textColorHint="@color/black"
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/labelTelefono"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:text="@string/inputTel"
         android:textColor="@color/white"
-        android:textSize="20sp"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/editTextCorreo"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/input_generico"
         android:ems="10"
         android:hint="0123456789"
-        android:textColorHint="@color/black"
         android:inputType="textEmailAddress"
+        android:maxLength="10"
         android:textAlignment="center"
-        android:visibility="visible"
-        android:background="@drawable/input_generico"
-        android:layout_marginBottom="20dp"
-        android:maxLength="10"/>
+        android:textColorHint="@color/black"
+        android:visibility="visible" />
 
     <Button
         android:id="@+id/buttonGuardar"
         android:layout_width="match_parent"
+        android:layout_height="40dp"
         android:layout_marginLeft="60dp"
+        android:layout_marginTop="16dp"
         android:layout_marginRight="60dp"
         android:layout_marginBottom="20dp"
-        android:layout_marginTop="16dp"
-        android:layout_height="40dp"
         android:background="@drawable/button_primary"
-        android:text="Guardar"
         android:onClick="btnGuardarSocio"
+        android:text="Guardar"
         app:backgroundTint="@null" />
 
     <Button
@@ -162,9 +161,9 @@
         android:layout_height="40dp"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
-        android:textColor="@color/background"
         android:background="@drawable/button_secondary"
         android:text="@string/btnCancelar"
+        android:textColor="@color/background"
         app:backgroundTint="@null" />
 
     <!--    <ImageView-->
