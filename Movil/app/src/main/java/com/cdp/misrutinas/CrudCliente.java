@@ -201,18 +201,18 @@ public class CrudCliente extends MRSQLiteHelper{
         }
 
         if (!areFieldsValid(
-                new FieldLengthValidation(nombre, 1, 25),
-                new FieldLengthValidation(apellido, 1, 25),
+                new FieldLengthValidation(nombre, 1, 15),
+                new FieldLengthValidation(apellido, 1, 15),
                 new FieldLengthValidation(dni, 8, 8),
-                new FieldLengthValidation(email, 8, 45),
-                new FieldLengthValidation(telefono, 10, 10)
+                new FieldLengthValidation(email, 8, 75),
+                new FieldLengthValidation(telefono, 1, 15)
         )) {
-            if (nombre.length() < 1 || nombre.length() > 45) {
-                Toast.makeText(context, "Nombre debe tener entre 1 y 25 caracteres.", Toast.LENGTH_SHORT).show();
+            if (nombre.length() < 1 || nombre.length() > 15) {
+                Toast.makeText(context, "Nombre debe tener entre 1 y 15 caracteres.", Toast.LENGTH_SHORT).show();
             }
 
-            if (apellido.length() < 1 || apellido.length() > 45) {
-                Toast.makeText(context, "Apellido debe tener entre 1 y 25 caracteres.", Toast.LENGTH_SHORT).show();
+            if (apellido.length() < 1 || apellido.length() > 15) {
+                Toast.makeText(context, "Apellido debe tener entre 1 y 15 caracteres.", Toast.LENGTH_SHORT).show();
             }
 
             if (dni.length() != 8) {
@@ -220,11 +220,11 @@ public class CrudCliente extends MRSQLiteHelper{
             }
 
             if (email.length() < 8 || email.length() > 75) {
-                Toast.makeText(context, "Email debe tener entre 8 y 45 caracteres.",  Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Email debe tener entre 8 y 75 caracteres.",  Toast.LENGTH_SHORT).show();
             }
 
-            if (telefono.length() != 10) {
-                Toast.makeText(context, "Teléfono debe tener exactamente 10 caracteres.",  Toast.LENGTH_SHORT).show();
+            if (telefono.length() < 1 || telefono.length() > 15) {
+                Toast.makeText(context, "Teléfono debe tener entre 1 y 15 caracteres.",  Toast.LENGTH_SHORT).show();
             }
 
             db.close();
