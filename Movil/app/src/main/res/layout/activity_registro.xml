@@ -2,14 +2,15 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="20dp"
     android:background="@color/background"
     android:clipChildren="true"
     android:orientation="vertical"
@@ -17,10 +18,11 @@
 
     <ImageView
         android:id="@+id/volver_registro"
-        android:layout_width="16.03dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="btnVolverRegistro"
-        android:src="@mipmap/flecha_volver"/>
+        android:src="@drawable/volver"
+        android:contentDescription="@string/btnVolver"/>
 
     <TextView
         android:id="@+id/textViewRegistro"
@@ -54,7 +56,7 @@
         android:textAlignment="center"
         android:visibility="visible"
         android:background="@drawable/input_generico"
-        android:maxLength="150"/>
+        android:maxLength="75"/>
 
     <TextView
         android:id="@+id/emailError"
@@ -86,7 +88,7 @@
         android:textAlignment="center"
         android:visibility="visible"
         android:background="@drawable/input_generico"
-        android:maxLength="24"/>
+        android:maxLength="16"/>
 
     <TextView
         android:id="@+id/passwordError"
@@ -230,8 +232,8 @@
 
     <Button
         android:id="@+id/btnInsertar"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
         android:background="@drawable/button_primary"
         android:text="@string/btnRegister"
         android:onClick="btnRegistro"
