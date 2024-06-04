@@ -131,12 +131,12 @@ public class CrudCliente extends MRSQLiteHelper{
         if (validationResult.isValid) {
             try {
                 ContentValues values = new ContentValues();
-                values.put("email", email);
+                values.put("email", email); // TEL
                 values.put("pass", password);
-                values.put("nombre", nombre);
-                values.put("apellido", apellido);
-                values.put("dni", dni);
-                values.put("tel", tel);
+                values.put("nombre", nombre); // DNI
+                values.put("apellido", apellido); // NOMBRE
+                values.put("dni", dni); // EMAIL
+                values.put("tel", tel); // NADA
                 values.put("id_rol", 1);
 
                 long idUsuario = db.insert("Usuario", null, values);
@@ -276,9 +276,10 @@ public class CrudCliente extends MRSQLiteHelper{
         if (cursor.moveToFirst()){
             do {
                 cliente = new Clientes();
-                cliente.setId(cursor.getInt(0));
-                cliente.setNombre(cursor.getString(3));
-                cliente.setApellido(cursor.getString(2));
+
+                cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+                cliente.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+                cliente.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
 
                 listaClientes.add(cliente);
             } while (cursor.moveToNext());
@@ -297,15 +298,15 @@ public class CrudCliente extends MRSQLiteHelper{
 
         cursor = db.rawQuery("SELECT * FROM Usuario WHERE id_usuario = " + id + " Limit 1", null );
 
-        //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
         if (cursor.moveToFirst()){
             cliente = new Clientes();
-            cliente.setId(cursor.getInt(0));
-            cliente.setNombre(cursor.getString(3));
-            cliente.setApellido(cursor.getString(2));
-            cliente.setDni(cursor.getString(4));
-            cliente.setEmail(cursor.getString(5));
-            cliente.setTel(cursor.getString(6));
+
+            cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+            cliente.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+            cliente.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
+            cliente.setDni(cursor.getString(cursor.getColumnIndexOrThrow("dni")));
+            cliente.setTel(cursor.getString(cursor.getColumnIndexOrThrow("tel")));
+            cliente.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
         }
         cursor.close();
         return cliente;
