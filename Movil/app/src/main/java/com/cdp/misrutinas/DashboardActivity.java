@@ -75,14 +75,11 @@ public class DashboardActivity extends AppCompatActivity {
         int itemId = item.getItemId();
         if (itemId == R.id.home) {
             return true;
-        } else if (itemId == R.id.finanza) {
-            startActivity(new Intent(getApplicationContext(), FinanzasActivity.class));
-            return true;
-        } else if (itemId == R.id.calendario) {
-            startActivity(new Intent(getApplicationContext(), CalendarioActivity.class));
-            return true;
         } else if (itemId == R.id.contacto) {
             startActivity(new Intent(getApplicationContext(), ContactoActivity.class));
+            return true;
+        } else if (itemId == R.id.mas) {
+            startActivity(new Intent(getApplicationContext(), ListaClaseActivity.class));
             return true;
         }
         return false;

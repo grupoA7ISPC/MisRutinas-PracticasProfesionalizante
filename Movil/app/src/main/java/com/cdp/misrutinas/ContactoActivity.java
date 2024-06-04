@@ -30,11 +30,8 @@ public class ContactoActivity extends AppCompatActivity {
         } else if (itemId == R.id.home) {
             startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
             return true;
-        } else if (itemId == R.id.finanza) {
-            startActivity(new Intent(getApplicationContext(), FinanzasActivity.class));
-            return true;
-        } else if (itemId == R.id.calendario) {
-            startActivity(new Intent(getApplicationContext(), CalendarioActivity.class));
+        } else if (itemId == R.id.mas) {
+            startActivity(new Intent(getApplicationContext(), ListaClaseActivity.class));
             return true;
         }
         return false;
