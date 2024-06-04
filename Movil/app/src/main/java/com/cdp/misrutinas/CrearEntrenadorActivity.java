@@ -53,6 +53,7 @@ public class CrearEntrenadorActivity extends AppCompatActivity {
 
                 if (id != -1) {
                     textoResultado.setText("Registro insertado con ID: " + id);
+                    btnVolverListaEntrenador(view);
                 } else {
                     textoResultado.setText("Error al insertar el registro.");
                 }
