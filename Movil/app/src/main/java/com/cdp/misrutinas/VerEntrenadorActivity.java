@@ -28,7 +28,7 @@ public class VerEntrenadorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_socio);
+        setContentView(R.layout.activity_ver_entrenador);
 
         textNombreApellido = findViewById(R.id.textNombreApellido);
         textNombre = findViewById(R.id.textNombre);
@@ -104,11 +104,11 @@ public class VerEntrenadorActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cancelar(View view){
+    public void buttonCancelarEntrenador(View view){
         Intent intent=new Intent(VerEntrenadorActivity.this, ListaProfesorActivity.class);
         startActivity(intent);
     }
-    public void btnVolverListaSocios(View view){
+    public void btnVolverListaEntrenador(View view){
         Intent intent=new Intent(VerEntrenadorActivity.this, ListaProfesorActivity.class);
         startActivity(intent);
     }

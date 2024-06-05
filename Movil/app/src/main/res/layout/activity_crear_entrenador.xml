@@ -11,7 +11,7 @@
     tools:context=".CrearEntrenadorActivity">
 
     <ImageView
-        android:id="@+id/volver_editar_socio"
+        android:id="@+id/volver_editar_entrenador"
         android:layout_width="16.03dp"
         android:layout_height="23dp"
         android:layout_marginTop="21dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewEditarSocio"
+        android:id="@+id/textViewEditarEntrenador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

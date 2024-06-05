@@ -19,7 +19,7 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
     EditText textNombre, textApellido, textDNI, textEmail, textPhone;
     Button btnGuardar;
     int id = 0;
-    Clientes socio;
+    Clientes entrenador;
 
     int idRol = 2;
 
@@ -28,7 +28,7 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editar_socio);
+        setContentView(R.layout.activity_editar_profesor);
 
         textNombreApellido = findViewById(R.id.textNombreApellido);
         textNombre = findViewById(R.id.textNombre);
@@ -52,15 +52,15 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
             id = (int)savedInstanceState.getSerializable("ID");
         }
 
-        socio = crud.verCliente(id);
+        entrenador = crud.verCliente(id);
 
-        if(socio != null){
-            textNombreApellido.setText(socio.getNombreApellido());
-            textNombre.setText(socio.getNombre());
-            textApellido.setText(socio.getApellido());
-            textDNI.setText(socio.getDni());
-            textEmail.setText(socio.getEmail());
-            textPhone.setText(socio.getTel());
+        if(entrenador != null){
+            textNombreApellido.setText(entrenador.getNombreApellido());
+            textNombre.setText(entrenador.getNombre());
+            textApellido.setText(entrenador.getApellido());
+            textDNI.setText(entrenador.getDni());
+            textEmail.setText(entrenador.getEmail());
+            textPhone.setText(entrenador.getTel());
         }
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +81,8 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
                     correcto = crud.editarCliente(id, nombre, apellido, dni, email, telefono, idRol);
 
                     if (correcto) {
-                        Toast.makeText(EditarEntrenadorActivity.this, "Socio editado", Toast.LENGTH_LONG).show();
-                        volverSocio();
+                        Toast.makeText(EditarEntrenadorActivity.this, "Entrenador editado", Toast.LENGTH_LONG).show();
+                        volverEntrenador();
                     }else {
                         Toast.makeText(EditarEntrenadorActivity.this, "Error, debe completar los campos obligatorios.", Toast.LENGTH_LONG).show();
                     }
@@ -91,18 +91,18 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
         });
     }
 
-    private void volverSocio(){
-        Intent intent = new Intent(this, VerSocioActivity.class);
+    private void volverEntrenador(){
+        Intent intent = new Intent(this, VerEntrenadorActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }
 
-    public void btnVolverListaSocio(View view){
+    public void btnVolverListaEntrenador(View view){
         Intent intent=new Intent(EditarEntrenadorActivity.this,ListaProfesorActivity.class);
         startActivity(intent);
     }
 
-    public void cancelar(View view){
+    public void cancelarEntrenador(View view){
         Intent intent=new Intent(EditarEntrenadorActivity.this,ListaProfesorActivity.class);
         startActivity(intent);
     }

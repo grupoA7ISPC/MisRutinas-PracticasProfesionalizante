@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
@@ -15,11 +15,10 @@
         tools:context=".VerEntrenadorActivity">
 
         <ImageView
-            android:id="@+id/volverListaSocios"
-            android:layout_width="16.03dp"
+            android:id="@+id/volverListaEntrenadores"
             android:layout_height="23dp"
             android:layout_marginTop="21dp"
-            android:onClick="btnVolverListaSocios"
+            android:onClick="btnVolverListaEntrenador"
             android:src="@mipmap/flecha_volver" />
 
         <TextView
@@ -28,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text=""
-            android:textColor="@color/verdeSocios"
+            android:textColor="@color/rojoEntrenador"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"/>
@@ -157,7 +156,7 @@
             />
 
         <Button
-            android:id="@+id/btnEditar"
+            android:id="@+id/btnEditarEntrenador"
             android:layout_width="match_parent"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
@@ -169,7 +168,7 @@
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/btnEliminar"
+            android:id="@+id/btnEliminarEntrenador"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginLeft="60dp"

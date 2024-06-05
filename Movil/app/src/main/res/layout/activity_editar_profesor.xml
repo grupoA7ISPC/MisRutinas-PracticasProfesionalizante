@@ -8,20 +8,19 @@
     android:orientation="vertical"
     android:clipChildren="true"
     android:padding="16dp"
-    tools:context=".EditarSocioActivity">
+    tools:context=".EditarEntrenadorActivity">
 
     <ImageView
-        android:id="@+id/volver_editar_socio"
+        android:id="@+id/volver_editar_entrenador"
         android:layout_width="16.03dp"
         android:layout_height="23dp"
         android:layout_marginTop="21dp"
-        android:onClick="btnVolverEditarSocio"
         android:src="@mipmap/flecha_volver"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewEditarEntrenador"
+        android:id="@+id/EditarEntrenador"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -35,14 +34,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewSocio"
+        android:id="@+id/textNombreApellido"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Verónica Torres"
+        android:layout_marginBottom="20dp"
         android:textColor="@color/rojoEntrenador"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,7 +57,7 @@
         android:layout_marginBottom="8dp"/>
 
     <EditText
-        android:id="@+id/editTextNombre"
+        android:id="@+id/textNombre"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:clipToOutline="true"
@@ -84,7 +82,7 @@
         android:layout_marginBottom="8dp"/>
 
     <EditText
-        android:id="@+id/editTextApellido"
+        android:id="@+id/textApellido"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
@@ -107,7 +105,7 @@
         android:layout_marginBottom="8dp"/>
 
     <EditText
-        android:id="@+id/editTextNomUsuario"
+        android:id="@+id/textDNI"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
@@ -130,13 +128,13 @@
         android:layout_marginBottom="8dp"/>
 
     <EditText
-        android:id="@+id/editTextCorreo"
+        android:id="@+id/textTel"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:ems="10"
         android:hint="0123456789"
         android:textColorHint="@color/black"
-        android:inputType="textEmailAddress"
+        android:inputType="text"
         android:textAlignment="center"
         android:visibility="visible"
         android:background="@drawable/input_generico"
@@ -144,7 +142,7 @@
         android:maxLength="10"/>
 
     <Button
-        android:id="@+id/buttonGuardar"
+        android:id="@+id/buttonGuardarEntrenador"
         android:layout_width="match_parent"
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
@@ -153,11 +151,11 @@
         android:layout_height="40dp"
         android:background="@drawable/button_primary"
         android:text="Guardar"
-        android:onClick="btnGuardarSocio"
+        android:onClick="btnGuardarEntrenador"
         app:backgroundTint="@null" />
 
     <Button
-        android:id="@+id/buttonEliminar"
+        android:id="@+id/buttonCancelarEntrenador"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="60dp"
@@ -167,14 +165,5 @@
         android:text="@string/btnCancelar"
         app:backgroundTint="@null" />
 
-    <!--    <ImageView-->
-    <!--        android:id="@+id/ivAvatarDashboard"-->
-    <!--        android:layout_width="73dp"-->
-    <!--        android:layout_height="73dp"-->
-    <!--        android:layout_marginStart="156dp"-->
-    <!--        android:layout_marginTop="60dp"-->
-    <!--        android:background="@drawable/image_socio1"-->
-    <!--        app:layout_constraintStart_toEndOf="@+id/textViewEditarSocio"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 </LinearLayout>
