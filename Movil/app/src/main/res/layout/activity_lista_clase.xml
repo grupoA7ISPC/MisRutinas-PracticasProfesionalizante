@@ -6,16 +6,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:padding="18dp"
-    tools:context=".ListaClaseActivity">
+    tools:context=".CrearClaseActivity">
 
     <ImageView
         android:id="@+id/volverClasedashboard"
-        android:layout_width="16.03dp"
-        android:layout_height="23dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:onClick="btnVolverDashboard"
-        android:src="@mipmap/flecha_volver" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:onClick="irListaClase"
+        android:src="@drawable/volver"
+        android:contentDescription="@string/btnVolver"
+        />
 
     <TextView
         android:id="@+id/tvListaClaseTitle"
