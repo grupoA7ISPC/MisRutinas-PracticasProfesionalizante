@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cdp.misrutinas.data.UserSession;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class IniciarSesionActivity extends AppCompatActivity {
     EditText editTextPassword, editTextCorreo;
+    TextView userError;
     Button btnIngresar;
     private CrudCliente db;
     private FirebaseAuth mAuth;
@@ -38,6 +40,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
 
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextCorreo = findViewById(R.id.editTextCorreo);
+        userError = findViewById(R.id.userError);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
@@ -90,6 +93,7 @@ public class IniciarSesionActivity extends AppCompatActivity {
     public void iniciarSesion(){
         String email = editTextCorreo.getText().toString();
         String password = editTextPassword.getText().toString();
+        userError.setVisibility(View.GONE);
 
         db = new CrudCliente(this);
         Usuario usuario = db.getUsuariofromDB(email);
@@ -104,15 +108,18 @@ public class IniciarSesionActivity extends AppCompatActivity {
                                     UserSession.getInstance().setCurrentUser(usuario);
                                     showDashboard();
                                 } else {
-                                    // If sign in fails, display a message to the user.
-                                    Toast.makeText(IniciarSesionActivity.this, "Se ha producido un error al autenticar el usuario. Usuario inexistente y/o contraseña incorrecta",
-                                            Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(IniciarSesionActivity.this, "Se ha producido un error al autenticar el usuario. Usuario inexistente y/o contraseña incorrecta",
+//                                            Toast.LENGTH_SHORT).show();
+                                    userError.setText("Error: Correo no registrado y/o contraseña incorrecta");
+                                    userError.setVisibility(View.VISIBLE);
                                 }
                             }
 
                         });
         } else {
-            Toast.makeText(IniciarSesionActivity.this, "Hay campos vacíos en el formulario", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(IniciarSesionActivity.this, "Hay campos vacíos en el formulario", Toast.LENGTH_SHORT).show();
+            userError.setText("Complete todos los campos.");
+            userError.setVisibility(View.VISIBLE);
         }
     }
 

@@ -101,6 +101,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
     public void btnLogout(View view){
         mAuth.signOut();
+        UserSession.getInstance().logout();
         Intent intent=new Intent(DashboardActivity.this, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
