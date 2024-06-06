@@ -17,11 +17,13 @@
 
         <ImageView
             android:id="@+id/volverListaEntrenadores"
-            android:layout_width="16.03dp"
-            android:layout_height="23dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
             android:onClick="btnVolverListaEntrenador"
-            android:src="@mipmap/flecha_volver" />
+            android:src="@drawable/volver"
+            android:contentDescription="@string/btnVolver"
+            />
 
         <TextView
             android:id="@+id/textNombreApellido"
