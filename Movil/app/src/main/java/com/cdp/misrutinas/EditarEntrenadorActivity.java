@@ -21,7 +21,7 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
     int id = 0;
     Clientes entrenador;
 
-    int idRol = 2;
+    int idRol = 3;
 
     boolean correcto = false;
 
@@ -92,7 +92,7 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
     }
 
     private void volverEntrenador(){
-        Intent intent = new Intent(this, VerEntrenadorActivity.class);
+        Intent intent = new Intent(this, ListaProfesorActivity.class);
         intent.putExtra("ID", id);
         startActivity(intent);
     }
@@ -102,7 +102,7 @@ public class EditarEntrenadorActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void cancelarEntrenador(View view){
+    public void btnCancelar(View view){
         Intent intent=new Intent(EditarEntrenadorActivity.this,ListaProfesorActivity.class);
         startActivity(intent);
     }
