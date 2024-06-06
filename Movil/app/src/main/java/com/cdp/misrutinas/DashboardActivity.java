@@ -57,12 +57,12 @@ public class DashboardActivity extends AppCompatActivity {
 
 
         // Total Entrenadores
-        Cursor ce = db.rawQuery ("select * from Entrenador", null);
+        Cursor ce = db.rawQuery ("select * from Usuario WHERE id_rol=3", null);
         int totalEntrenadores = ce.getCount ();
         tvEntrenadores.setText (String.valueOf (totalEntrenadores));
 
         // Total Socios
-        Cursor cs = db.rawQuery ("select * from Socio", null);
+        Cursor cs = db.rawQuery ("select * from Usuario WHERE id_rol=2", null);
         int totalSocios = cs.getCount ();
         tvSocios.setText (String.valueOf (totalSocios));
 
