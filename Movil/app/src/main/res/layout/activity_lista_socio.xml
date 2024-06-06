@@ -6,17 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:padding="18dp"
-    tools:context=".FinanzasActivity">
+    tools:context=".ListaSocioActivity">
 
     <ImageView
         android:id="@+id/volver_dashboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:onClick="btnVolverListaSocio"
-        android:src="@drawable/volver"
         android:contentDescription="@string/btnVolver"
-        />
+        android:onClick="btnVolverDashboard"
+        android:src="@drawable/volver" />
 
     <TextView
         android:id="@+id/tvListaSocioTitle"
