@@ -37,7 +37,7 @@ public class CustomDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 // Crear un Intent para iniciar la actividad CrearClaseActivity
-                Intent intent = new Intent(getContext(), CrearClaseActivity.class);
+                Intent intent = new Intent(getContext(), CrearSocioActivity.class);
 
                 // Iniciar la actividad
                 startActivity(intent);
@@ -65,7 +65,7 @@ public class CustomDialogFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 // Crear un Intent para iniciar la actividad CrearClaseActivity
-                Intent intent = new Intent(getContext(), CrearSocioActivity.class);
+                Intent intent = new Intent(getContext(), CrearClaseActivity.class);
 
                 // Iniciar la actividad
                 startActivity(intent);
