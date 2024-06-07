@@ -45,11 +45,19 @@ public class ContactoActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
             return true;
         } else if (itemId == R.id.mas) {
-            startActivity(new Intent(getApplicationContext(), ListaClaseActivity.class));
+            // Llama al método para mostrar el diálogo modal
+            showCustomDialog();
             return true;
         }
         return false;
     }
+
+    private void showCustomDialog() {
+        CustomDialogFragment dialog = new CustomDialogFragment();
+        dialog.show(getSupportFragmentManager(), "CustomDialogFragment");
+    }
+
+
 
 
     }
