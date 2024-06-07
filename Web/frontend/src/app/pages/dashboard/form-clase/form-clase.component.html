@@ -1,45 +1,49 @@
+<div class="container text-center">
+
+<h1>Crear nueva clase</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
   <div class="form-group">
     <label for="name">Nombre de la clase:</label>
     <input type="text" class="form-control" id="name" placeholder="Clase de Spinning" formControlName="name">
     <div *ngIf="name?.errors && name?.touched">
-      <p *ngIf="name?.hasError('required')" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="name?.hasError('minlength') || name?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 2 y 15 caracteres.</p>
+      <p *ngIf="name?.hasError('required')" class="text-danger">Nombre de la clase: es requerido.</p>
+      <p *ngIf="name?.hasError('minlength') || name?.hasError('maxlength')" class="text-danger">El nombre debe tener entre 1 y 45 caracteres.</p>
     </div>
   </div>
   <div class="form-group">
     <label for="price">Precio:</label>
     <input type="number" class="form-control" id="price" placeholder="2500" formControlName="price">
     <div *ngIf="price?.errors && price?.touched">
-      <p *ngIf="price?.hasError('required')" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="price?.hasError('min') || price?.hasError('max')" class="text-danger">El precio debe tener entre 2 y 10 caracteres.</p>
+      <p *ngIf="price?.hasError('required')" class="text-danger">Precio: es requerido.</p>
+      <p *ngIf="price?.hasError('min') || price?.hasError('max')" class="text-danger">El precio debe ser entre 1 y 6 digitos.</p>
     </div>
   </div>
   <div class="form-group">
     <label for="description">Descripción:</label>
     <input type="text" class="form-control" id="description" placeholder="Descripción de la clase de spinning." formControlName="description">
     <div *ngIf="description?.errors && description?.touched">
-      <p *ngIf="description?.hasError('required')" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="description?.hasError('minlength') || description?.hasError('maxlength')" class="text-danger">El texto debe tener entre 2 y 400 caracteres.</p>
+      <p *ngIf="description?.hasError('required')" class="text-danger">Descripción: es requerida.</p>
+      <p *ngIf="description?.hasError('minlength') || description?.hasError('maxlength')" class="text-danger">El texto debe tener entre 1 y 400 caracteres.</p>
     </div>
   </div>
   <div class="form-group">
     <label for="image">Imagen:</label>
-    <input type="file" id="image" accept="image/*" formControlName="image">
-    <div>
-      <!-- <img src="" alt=""> -->
+    <input type="file" id="image" accept="image/*" formControlName="image" (change)="onFileChange($event)">
+    <div *ngIf="image?.errors && image?.touched">
+      <p *ngIf="image?.hasError('required')" class="text-danger">La Imagen: es requerida.</p>
     </div>
   </div>
   <div class="form-group">
     <label for="duration">Duración:</label>
     <input type="text" class="form-control" id="duration" placeholder="Lunes y miércoles 18:30hs." formControlName="duration">
     <div *ngIf="duration?.errors && duration?.touched">
-      <p *ngIf="duration?.hasError('required')" class="text-danger">Este campo es requerido.</p>
-      <p *ngIf="duration?.hasError('minlength') || duration?.hasError('maxlength')" class="text-danger">El texto debe tener entre 2 y 100 caracteres.</p>
+      <p *ngIf="duration?.hasError('required')" class="text-danger">Duración: es requerida.</p>
+      <p *ngIf="duration?.hasError('minlength') || duration?.hasError('maxlength')" class="text-danger">El texto debe tener entre 1 y 100 caracteres.</p>
     </div>
   </div>
   <div class="btn-container">
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <button type="button" class="btn btn-secondary"><a class="nav-link" routerLink="/dashboard">Cancelar</a></button>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-danger"><a class="nav-link" routerLink="/dashboard">Cancelar</a></button>
   </div>
 </form>
+</div>
