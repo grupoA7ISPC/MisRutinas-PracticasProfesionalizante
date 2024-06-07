@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
@@ -69,6 +71,17 @@ public class DashboardActivity extends AppCompatActivity {
         BottomNavigationView bottomNavigationView = findViewById(R.id.nav);
         bottomNavigationView.setSelectedItemId(R.id.home);
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
+
+        Button btnHomeWeb = findViewById(R.id.btnHomeWeb);
+        btnHomeWeb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://github.com/grupoA7ISPC/MisRutinas-PracticasProfesionalizante.git";
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
     }
 
     private boolean onNavigationItemSelected(MenuItem item) {
