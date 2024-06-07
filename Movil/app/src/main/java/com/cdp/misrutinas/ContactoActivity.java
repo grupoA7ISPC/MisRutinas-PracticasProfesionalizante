@@ -43,17 +43,25 @@ public class ContactoActivity extends AppCompatActivity {
     }
     private boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.contacto) {
+        if (itemId == R.id.home) {
             return true;
-        } else if (itemId == R.id.home) {
-            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+        } else if (itemId == R.id.contacto) {
+            startActivity(new Intent(getApplicationContext(), ContactoActivity.class));
             return true;
         } else if (itemId == R.id.mas) {
-            startActivity(new Intent(getApplicationContext(), ListaClaseActivity.class));
+            // Llama al método para mostrar el diálogo modal
+            showCustomDialog();
             return true;
         }
         return false;
     }
+
+    private void showCustomDialog() {
+        CustomDialogFragment dialog = new CustomDialogFragment();
+        dialog.show(getSupportFragmentManager(), "CustomDialogFragment");
+    }
+
+
 
 
     }
