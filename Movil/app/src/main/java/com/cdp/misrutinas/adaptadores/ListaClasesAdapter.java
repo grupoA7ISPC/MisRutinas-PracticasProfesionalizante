@@ -36,7 +36,7 @@ public class ListaClasesAdapter extends RecyclerView.Adapter<ListaClasesAdapter.
     @Override
     public void onBindViewHolder(@NonNull ClaseViewHolder holder, int position) {
         holder.viewNombre.setText(listaClases.get(position).getNombre());
-        holder.viewPrecio.setText(listaClases.get(position).getPrecio());
+        holder.viewPrecio.setText("$" + listaClases.get(position).getPrecio());
         holder.viewDescripcion.setText(listaClases.get(position).getDescripcion());
 
     }
