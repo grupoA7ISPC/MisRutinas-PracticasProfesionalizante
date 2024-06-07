@@ -28,13 +28,9 @@ public class ContactoActivity extends AppCompatActivity {
         btnHomeWeb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // URL a la que quieres dirigir al hacer clic en el botón
                 String url = "https://github.com/grupoA7ISPC/MisRutinas-PracticasProfesionalizante.git";
-                // Crear un intent implícito con la acción ACTION_VIEW
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                // Establecer la URL como dato del intento
                 intent.setData(Uri.parse(url));
-                // Iniciar la actividad del navegador web
                 startActivity(intent);
 
             }
