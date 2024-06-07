@@ -43,10 +43,10 @@ public class ContactoActivity extends AppCompatActivity {
     }
     private boolean onNavigationItemSelected(MenuItem item) {
         int itemId = item.getItemId();
-        if (itemId == R.id.home) {
+        if (itemId == R.id.contacto) {
             return true;
-        } else if (itemId == R.id.contacto) {
-            startActivity(new Intent(getApplicationContext(), ContactoActivity.class));
+        } else if (itemId == R.id.home) {
+            startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
             return true;
         } else if (itemId == R.id.mas) {
             // Llama al método para mostrar el diálogo modal
