@@ -17,14 +17,14 @@
 
         <ImageView
             android:id="@+id/imgClase"
-            android:layout_width="125dp"
+            android:layout_width="200dp"
             android:layout_height="82dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
-            android:src="@drawable/icono_lista_clase"/>
+            android:src="@drawable/icono_lista_clase" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,30 +34,44 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/viewNombre"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="TextView"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-            <TextView
-                android:id="@+id/viewPrecio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/naranjaSoft"
-                android:text="TextView"
-                android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/viewNombre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:text="TextView"
+                    android:textSize="24sp"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/viewDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="#020202"
                 android:text="TextView"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                />
         </LinearLayout>
+        <TextView
+            android:id="@+id/viewPrecio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/naranjaSoft"
+            android:text="TextView"
+            android:textSize="16sp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"/>
     </LinearLayout>
 
 </RelativeLayout>

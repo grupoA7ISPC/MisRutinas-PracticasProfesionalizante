@@ -9,6 +9,7 @@
     <color name="secondaryText">#70707B</color>
     <color name="gris">#E0E0E0</color>
     <color name="inputs">#E1E1F6</color>
+    <color name="danger">#bd2130</color>
     <color name="verdeSocios">#00ADB5</color>
     <color name="rojoEntrenador">#D04242</color>
 </resources>

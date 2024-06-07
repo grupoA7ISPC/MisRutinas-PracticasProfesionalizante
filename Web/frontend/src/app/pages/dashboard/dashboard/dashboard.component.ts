@@ -21,8 +21,29 @@ export class DashboardComponent {
     if (this.usuario) {
       this.username = `${this.usuario.nombre} ${this.usuario.apellido}`;
     }
-    this.clasesService.getAllClasses().subscribe(data => {
-      this.clases = data;
-    });
+    this.loadClasses();
+  }
+
+  loadClasses(): void {
+    this.clasesService.getAllClasses().subscribe(
+      (data: Clase[]) => {
+        this.clases = data;
+      },
+      error => {
+        console.error('Error al cargar las clases:', error);
+      }
+    );
+  }
+
+  eliminarClase(id: number): void {
+    this.clasesService.deleteClass(id).subscribe(
+      () => {
+        // elimina y se actualizar la lista de clases
+        this.loadClasses();
+      },
+      error => {
+        console.error('Error al eliminar la clase:', error);
+      }
+    );
   }
 }

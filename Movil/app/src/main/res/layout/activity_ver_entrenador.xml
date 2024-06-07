@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,10 +13,10 @@
         android:orientation="vertical"
         android:clipChildren="true"
         android:padding="16dp"
-        tools:context=".EditarEntrenadorActivity">
+        tools:context=".VerEntrenadorActivity">
 
         <ImageView
-            android:id="@+id/volver_editar_entrenador"
+            android:id="@+id/volverListaEntrenadores"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="21dp"
@@ -25,25 +26,15 @@
             />
 
         <TextView
-            android:id="@+id/textViewEditarEntrenador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/h1EditarEntrenador"
-            android:textColor="#FFFFFF"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            />
-
-        <TextView
             android:id="@+id/textNombreApellido"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text=""
             android:textColor="@color/rojoEntrenador"
             android:textSize="24sp"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="20dp"/>
 
         <TextView
             android:id="@+id/labelNombre"
@@ -57,20 +48,17 @@
 
         <EditText
             android:id="@+id/textNombre"
-            android:layout_width="380dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:padding="13dp"
-            android:ems="10"
-            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:layout_marginBottom="20dp"
-            android:textColorHint="@color/secondaryText"
-            android:inputType="text"
-            android:visibility="visible"
-            android:autofillHints="name"
             android:background="@drawable/input_generico"
-            android:maxLength="45"
-            />
+            android:ems="10"
+            android:hint=""
+            android:text=""
+            android:inputType="text"
+            android:textAlignment="center"
+            android:textColorHint="@color/black"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/labelApellido"
@@ -84,18 +72,18 @@
 
         <EditText
             android:id="@+id/textApellido"
-            android:layout_width="380dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:padding="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:ems="10"
-            android:textColorHint="@color/secondaryText"
+            android:hint=""
+            android:text=""
+            android:textColorHint="@color/black"
             android:inputType="text"
             android:textAlignment="center"
+            android:visibility="visible"
             android:background="@drawable/input_generico"
             android:layout_marginBottom="20dp"
-            android:autofillHints="name"
-            android:maxLength="45"/>
+            />
 
         <TextView
             android:id="@+id/labelDNI"
@@ -109,23 +97,21 @@
 
         <EditText
             android:id="@+id/textDNI"
-            android:layout_width="380dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:padding="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:ems="10"
-            android:textColorHint="@color/secondaryText"
+            android:hint=""
+            android:text=""
+            android:textColorHint="@color/black"
             android:inputType="number"
             android:textAlignment="center"
             android:visibility="visible"
             android:background="@drawable/input_generico"
             android:layout_marginBottom="20dp"
-            android:autofillHints="none"
-            android:maxLength="8"/>
+            />
 
         <TextView
             android:id="@+id/labelEmail"
-            android:labelFor="@id/textEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/inputCorreo"
@@ -135,19 +121,18 @@
 
         <EditText
             android:id="@+id/textEmail"
-            android:layout_width="380dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:padding="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:ems="10"
-            android:textColorHint="@color/secondaryText"
+            android:hint=""
+            android:text=""
+            android:textColorHint="@color/black"
             android:inputType="textEmailAddress"
             android:textAlignment="center"
             android:visibility="visible"
             android:background="@drawable/input_generico"
             android:layout_marginBottom="20dp"
-            android:maxLength="75"
-            android:autofillHints="emailAddress"/>
+            />
 
         <TextView
             android:id="@+id/labelTelefono"
@@ -161,43 +146,40 @@
 
         <EditText
             android:id="@+id/textPhone"
-            android:layout_width="380dp"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:padding="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
             android:ems="10"
-            android:textColorHint="@color/secondaryText"
+            android:hint=""
+            android:text=""
+            android:textColorHint="@color/black"
             android:inputType="phone"
             android:textAlignment="center"
             android:visibility="visible"
             android:background="@drawable/input_generico"
             android:layout_marginBottom="20dp"
-            android:maxLength="10"
-            android:autofillHints="phone"/>
+            />
 
         <Button
-            android:id="@+id/btnGuardar"
-            android:layout_width="200dp"
-            android:layout_gravity="center"
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="16dp"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:background="@drawable/button_primary"
-            android:textColor="@color/white"
-            android:text="@string/btnGuardar"
+            android:text="@string/editBtnDefault"
             app:backgroundTint="@null" />
 
         <Button
-            android:id="@+id/btnCancelar"
-            android:layout_width="200dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:layout_marginLeft="60dp"
             android:layout_marginRight="60dp"
-            android:background="@drawable/button_secondary"
-            android:onClick="btnCancelar"
-            android:text="@string/btnCancelar"
             android:textColor="@color/background"
+            android:background="@drawable/button_secondary"
+            android:text="@string/deleteBtn"
             app:backgroundTint="@null" />
 
     </LinearLayout>

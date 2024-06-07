@@ -25,6 +25,9 @@
             android:name=".VerSocioActivity"
             android:exported="false" />
         <activity
+            android:name=".VerEntrenadorActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListaClaseActivity"
             android:exported="false" />
         <activity
@@ -32,12 +35,6 @@
             android:exported="false" />
         <activity
             android:name=".EditarClaseActivity"
-            android:exported="false" />
-        <activity
-            android:name=".FinanzasActivity"
-            android:exported="false" />
-        <activity
-            android:name=".CalendarioActivity"
             android:exported="false" />
         <activity
             android:name=".ContactoActivity"

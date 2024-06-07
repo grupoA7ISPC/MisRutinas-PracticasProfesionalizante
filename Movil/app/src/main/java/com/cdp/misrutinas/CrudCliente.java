@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.cdp.misrutinas.entidades.Clientes;
 import com.cdp.misrutinas.entidades.Usuario;
+import com.cdp.misrutinas.data.ValidationUserResult;
 
 import java.util.ArrayList;
 
@@ -57,77 +58,94 @@ public class CrudCliente extends MRSQLiteHelper{
     }
 
 
-    //------------------------------------
-    //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
-    public boolean isValidUser(String username, String email, String password, String nombre, String apellido, String dni) {
+    public ValidationUserResult isValidUser(String email, String password, String nombre, String apellido, String dni, String tel) {
+        ValidationUserResult result = new ValidationUserResult();
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(context, "Los campos Username, Email y Contraseña son obligatorios." , Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password) || TextUtils.isEmpty(nombre) || TextUtils.isEmpty(apellido) || TextUtils.isEmpty(dni) || TextUtils.isEmpty(tel)) {
+            if (TextUtils.isEmpty(email)) result.emailError = "Complete su email.";
+            if (TextUtils.isEmpty(password)) result.passwordError = "Introduzca una contraseña.";
+            if (TextUtils.isEmpty(nombre)) result.nombreError = "Introduzca su nombre.";
+            if (TextUtils.isEmpty(apellido)) result.apellidoError = "Introduzca su apellido.";
+            if (TextUtils.isEmpty(dni)) result.dniError = "Complete con su DNI.";
+            if (TextUtils.isEmpty(tel)) result.telError = "Complete con su nro de teléfono (sin 0 ni 15).";
+            result.isValid = false;
+            return result;
+        }
+
+        if (existeRegistro(db, email, "email")) {
+            result.emailError = "Este email ya está registrado.";
+            result.isValid = false;
+            return result;
         }
 
         if (!areFieldsValid(
-                new FieldLengthValidation(username, 4, 20),
                 new FieldLengthValidation(email, 8, 75),
-                new FieldLengthValidation(password, 8, 16)
+                new FieldLengthValidation(password, 8, 16),
+                new FieldLengthValidation(nombre, 3, 15),
+                new FieldLengthValidation(apellido, 3, 15),
+                new FieldLengthValidation(dni, 8, 8),
+                new FieldLengthValidation(tel, 10, 15)
         )) {
-            if (username.length() < 4 || username.length() > 20) {
-                Toast.makeText(context, "Username debe tener entre 4 y 20 caracteres.", Toast.LENGTH_SHORT).show();
+            if (email.length() < 8 || email.length() > 75) {
+                result.emailError = "El email debe tener entre 8 y 75 caracteres.";
             }
 
-            if (email.length() < 8 || email.length() > 75) {
-                Toast.makeText(context, "Email debe tener entre 8 y 75 caracteres.", Toast.LENGTH_SHORT).show();
+            if (!isValidEmail(db, email)) {
+                result.emailError = "Ingrese un email válido.";
             }
 
             if (password.length() < 8 || password.length() > 16) {
-                Toast.makeText(context, "Password debe tener entre 8 y 16 caracteres.", Toast.LENGTH_SHORT).show();
+                result.passwordError = "La contraseña debe tener entre 8 y 16 caracteres.";
             }
 
-            db.close();
-            return false;
-        }
-        if (!isValidEmail(db, email)) {
-            Toast.makeText(context, "El campo Email tiene un formato inválido o ya esta en uso", Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
+            if (nombre.length() < 3 || nombre.length() > 15) {
+                result.nombreError = "El nombre debe tener entre 3 y 15 caracteres.";
+            }
+
+            if (apellido.length() < 3 || apellido.length() > 15) {
+                result.apellidoError = "El apellido debe tener entre 3 y 15 caracteres.";
+            }
+
+            if (tel.length() < 10 || tel.length() > 15) {
+                result.telError = "Ingrese un teléfono válido, entre 10-15 caracteres con código de área y sin 15.";
+            }
+
+            if (!dni.matches("\\d{8}")) {
+                result.dniError = "El DNI debe tener 8 dígitos numéricos.";
+            }
+
+            result.isValid = false;
+            return result;
         }
 
-        if (existeRegistro(db, username, "username")) {
-            Toast.makeText(context, "El nombre de usuario ya existe.", Toast.LENGTH_SHORT).show();
-            db.close();
-            return false;
-        }
+        result.isValid = true;
 
-        return true;
+        return result;
     }
 
-    public long insertarUsuario(String username, String email, String password, String nombre, String apellido, String dni) {
+    public long insertarUsuario(String email, String password, String nombre, String apellido, String dni, String tel) {
         SQLiteDatabase db = super.getWritableDatabase();
 
-        if (isValidUser(username, email, password, nombre, apellido, dni)) {
+        ValidationUserResult validationResult = isValidUser(email, password, nombre, apellido, dni, tel);
+        if (validationResult.isValid) {
             try {
                 ContentValues values = new ContentValues();
-                values.put("username", username); // NOT NULL
-                values.put("email", email); // NOT NULL
-                values.put("pass", password); // NOT NULL
-                values.put("nombre", nombre); // NULL
-                values.put("apellido", apellido); // NULL
-                values.put("dni", dni); // NULL
-                values.put("id_rol", 1); // NOT NULL
+                values.put("email", email); // TEL
+                values.put("pass", password);
+                values.put("nombre", nombre); // DNI
+                values.put("apellido", apellido); // NOMBRE
+                values.put("dni", dni); // EMAIL
+                values.put("tel", tel); // NADA
+                values.put("id_rol", 1);
 
                 long idUsuario = db.insert("Usuario", null, values);
 
-                if (idUsuario != -1) {
-                    db.close();
-                    return idUsuario;
-                } else {
-                    db.close();
-                    return -1;
-                }
+                db.close();
+                return idUsuario;
+
             } catch (Exception e) {
-                Toast.makeText(context, "Error al insertar el registro.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error al crear usuario desde CrudCliente", Toast.LENGTH_SHORT).show();
                 db.close();
                 return -1;
             }
@@ -150,11 +168,15 @@ public class CrudCliente extends MRSQLiteHelper{
             if (cursor.moveToFirst()) {
                 usuario = new Usuario();
 
-                // Retrieve data from the cursor
                 usuario.setEmail(email);
-                usuario.setPassword(cursor.getString(7));
-                usuario.setUsername(cursor.getString(1));
-                //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
+                usuario.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+                usuario.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+                usuario.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
+                usuario.setDni(cursor.getString(cursor.getColumnIndexOrThrow("dni")));
+                usuario.setTel(cursor.getString(cursor.getColumnIndexOrThrow("tel")));
+                usuario.setPassword(cursor.getString(cursor.getColumnIndexOrThrow("pass")));
+                usuario.setId_rol(cursor.getInt(cursor.getColumnIndexOrThrow("id_rol")));
+                //TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, apellido VARCHAR(15) NOT NULL, nombre VARCHAR(15) NOT NULL, dni INTEGER NOT NULL, email VARCHAR(75) NOT NULL, tel VARCHAR(15) NOT NULL, pass VARCHAR(16) NOT NULL, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))
             }
 
             cursor.close();
@@ -179,18 +201,18 @@ public class CrudCliente extends MRSQLiteHelper{
         }
 
         if (!areFieldsValid(
-                new FieldLengthValidation(nombre, 1, 25),
-                new FieldLengthValidation(apellido, 1, 25),
+                new FieldLengthValidation(nombre, 1, 15),
+                new FieldLengthValidation(apellido, 1, 15),
                 new FieldLengthValidation(dni, 8, 8),
-                new FieldLengthValidation(email, 8, 45),
-                new FieldLengthValidation(telefono, 10, 10)
+                new FieldLengthValidation(email, 8, 75),
+                new FieldLengthValidation(telefono, 1, 15)
         )) {
-            if (nombre.length() < 1 || nombre.length() > 45) {
-                Toast.makeText(context, "Nombre debe tener entre 1 y 25 caracteres.", Toast.LENGTH_SHORT).show();
+            if (nombre.length() < 1 || nombre.length() > 15) {
+                Toast.makeText(context, "Nombre debe tener entre 1 y 15 caracteres.", Toast.LENGTH_SHORT).show();
             }
 
-            if (apellido.length() < 1 || apellido.length() > 45) {
-                Toast.makeText(context, "Apellido debe tener entre 1 y 25 caracteres.", Toast.LENGTH_SHORT).show();
+            if (apellido.length() < 1 || apellido.length() > 15) {
+                Toast.makeText(context, "Apellido debe tener entre 1 y 15 caracteres.", Toast.LENGTH_SHORT).show();
             }
 
             if (dni.length() != 8) {
@@ -198,11 +220,11 @@ public class CrudCliente extends MRSQLiteHelper{
             }
 
             if (email.length() < 8 || email.length() > 75) {
-                Toast.makeText(context, "Email debe tener entre 8 y 45 caracteres.",  Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Email debe tener entre 8 y 75 caracteres.",  Toast.LENGTH_SHORT).show();
             }
 
-            if (telefono.length() != 10) {
-                Toast.makeText(context, "Teléfono debe tener exactamente 10 caracteres.",  Toast.LENGTH_SHORT).show();
+            if (telefono.length() < 1 || telefono.length() > 15) {
+                Toast.makeText(context, "Teléfono debe tener entre 1 y 15 caracteres.",  Toast.LENGTH_SHORT).show();
             }
 
             db.close();
@@ -254,9 +276,10 @@ public class CrudCliente extends MRSQLiteHelper{
         if (cursor.moveToFirst()){
             do {
                 cliente = new Clientes();
-                cliente.setId(cursor.getInt(0));
-                cliente.setNombre(cursor.getString(3));
-                cliente.setApellido(cursor.getString(2));
+
+                cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+                cliente.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+                cliente.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
 
                 listaClientes.add(cliente);
             } while (cursor.moveToNext());
@@ -275,15 +298,15 @@ public class CrudCliente extends MRSQLiteHelper{
 
         cursor = db.rawQuery("SELECT * FROM Usuario WHERE id_usuario = " + id + " Limit 1", null );
 
-        //"CREATE TABLE Usuario (id_usuario INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username VARCHAR(20) UNIQUE , apellido VARCHAR(45), nombre VARCHAR(45), dni INTEGER,  email VARCHAR(75) NOT NULL,tel INTEGER, pass VARCHAR(16), active BOOLEAN, id_rol INTEGER, FOREIGN KEY (id_rol) REFERENCES Rol(id_rol))";
         if (cursor.moveToFirst()){
             cliente = new Clientes();
-            cliente.setId(cursor.getInt(0));
-            cliente.setNombre(cursor.getString(3));
-            cliente.setApellido(cursor.getString(2));
-            cliente.setDni(cursor.getString(4));
-            cliente.setEmail(cursor.getString(5));
-            cliente.setTel(cursor.getString(6));
+
+            cliente.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id_usuario")));
+            cliente.setApellido(cursor.getString(cursor.getColumnIndexOrThrow("apellido")));
+            cliente.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
+            cliente.setDni(cursor.getString(cursor.getColumnIndexOrThrow("dni")));
+            cliente.setTel(cursor.getString(cursor.getColumnIndexOrThrow("tel")));
+            cliente.setEmail(cursor.getString(cursor.getColumnIndexOrThrow("email")));
         }
         cursor.close();
         return cliente;
