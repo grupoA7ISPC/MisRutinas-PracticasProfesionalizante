@@ -22,7 +22,17 @@
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    <TextView
+        android:id="@+id/labelNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/inputNombre"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="125dp"/>
     <EditText
         android:id="@+id/editNombre"
         android:layout_width="match_parent"
@@ -31,7 +41,7 @@
         android:layout_marginRight="16dp"
         android:clipToOutline="true"
         android:ems="10"
-        android:hint="Nombre"
+        android:hint=""
         android:textColorHint="@color/black"
         android:inputType="text"
         android:textAlignment="center"
@@ -41,7 +51,17 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="158dp"
         />
-
+    <TextView
+        android:id="@+id/labelPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="200dp"/>
     <EditText
         android:id="@+id/editPrecio"
         android:layout_width="match_parent"
@@ -49,7 +69,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Precio"
+        android:hint=""
         android:textColorHint="@color/black"
         android:inputType="number"
         android:textAlignment="center"
@@ -58,7 +78,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="231dp"/>
-
+    <TextView
+        android:id="@+id/labelDescripción"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="275dp"/>
     <EditText
         android:id="@+id/editDescripcion"
         android:layout_width="match_parent"
@@ -66,7 +96,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="Descripción"
+        android:hint=""
         android:textColorHint="@color/black"
         android:inputType="text"
         android:textAlignment="center"
